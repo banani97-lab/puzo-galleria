@@ -42,10 +42,10 @@ export function Header({
                     <NavLink
                         prefetch="intent"
                         to="/"
-                        className='flex-grow justify-center text-center font-bold text-xl'
+                        className='flex-grow justify-center text-center'
                         style={activeLinkStyle}
                         end>
-                        <strong>{shop.name.split(" ")[0].toLocaleUpperCase()}</strong>
+                        <strong style={{ fontSize: '2rem'}}>{shop.name.split(" ")[0].toLocaleUpperCase()}</strong>
                     </NavLink>
                 </div>
                 <HeaderCtas cart={cart} />
@@ -235,6 +235,7 @@ function activeLinkStyle({
     return {
         fontWeight: isActive ? 'bold' : undefined,
         fontFamily: "Rollercoaster, sans-serif",
+        fontSize: '1.25rem',
         color: isPending ? 'grey' : '#62492C',
         display: 'flex',
         alignItems: 'center',

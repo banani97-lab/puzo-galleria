@@ -25,6 +25,15 @@ export function AddToCartButton({
           />
           <button
             type="submit"
+            style={{
+              fontFamily: 'Bodoni',
+              border: '1px solid black', // Black rectangular border
+              padding: '10px 20px', // Adjust padding for better appearance
+              backgroundColor: 'transparent', // Keep background neutral
+              cursor: 'pointer', // Change cursor on hover
+              fontSize: '1rem', // Optional: Adjust font size
+              transition: 'all 0.3s ease-in-out', // Smooth hover effect
+            }}
             onClick={onClick}
             disabled={disabled ?? fetcher.state !== 'idle'}
           >

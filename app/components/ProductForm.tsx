@@ -7,6 +7,7 @@ import type {
 import {AddToCartButton} from './AddToCartButton';
 import {useAside} from './Aside';
 import type {ProductFragment} from 'storefrontapi.generated';
+import { useState } from 'react';
 
 export function ProductForm({
   productOptions,
@@ -25,7 +26,7 @@ export function ProductForm({
 
         return (
           <div className="product-options" key={option.name}>
-            <h5>{option.name}</h5>
+            <h5 style={{ fontFamily: 'Bodoni'}}>{option.name}</h5>
             <div className="product-options-grid">
               {option.optionValues.map((value) => {
                 const {
@@ -57,6 +58,7 @@ export function ProductForm({
                           ? '1px solid black'
                           : '1px solid transparent',
                         opacity: available ? 1 : 0.3,
+                        fontFamily: 'Bodoni'
                       }}
                     >
                       <ProductOptionSwatch swatch={swatch} name={name} />
@@ -80,6 +82,7 @@ export function ProductForm({
                           ? '1px solid black'
                           : '1px solid transparent',
                         opacity: available ? 1 : 0.3,
+                        fontFamily: 'Bodoni'
                       }}
                       disabled={!exists}
                       onClick={() => {

@@ -11,6 +11,7 @@ import {
 import {ProductPrice} from '~/components/ProductPrice';
 import {ProductImage} from '~/components/ProductImage';
 import {ProductForm} from '~/components/ProductForm';
+import { useState } from 'react';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
   return [
@@ -114,11 +115,12 @@ export default function Product() {
         <br />
         <br />
         <p>
-          <strong>Description</strong>
+          <strong style={{ fontFamily: 'Bodoni'}}>Description</strong>
         </p>
         <br />
-        <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
+        <p style={{ fontFamily: 'Bodoni'}}>{product.description}</p>
         <br />
+        <CartDrawer/>
       </div>
       <Analytics.ProductView
         data={{
@@ -135,6 +137,74 @@ export default function Product() {
           ],
         }}
       />
+    </div>
+  );
+}
+
+function CartDrawer() {
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  const toggleSection = (section: string) => {
+    setExpandedSection(expandedSection === section ? null : section);
+  };
+
+  return (
+    <div className="cart-drawer w-full bg-white">
+      {[
+        {
+          title: 'Delivery Estimate',
+          content: (
+            <>
+              Denmark: 1-2 Business Days
+              <br />
+              Rest of Europe: 2-7 Business Days
+            </>
+          ),
+        },
+        {
+          title: 'Returns',
+          content: (
+            <>
+              Denmark: 1-2 Business Days
+              <br />
+              EU: 2-7 Business Days
+            </>
+          ),
+        },
+        {
+          title: 'Contact Us',
+          content: 'Feel free to contact us at contact@puzo.com',
+        },
+      ].map(({ title, content }) => (
+        <div key={title} className="mb-4 border-b border-gray-300 pb-2">
+          <button
+            style={{ fontFamily: 'Bodoni' }}
+            className="flex justify-between items-center w-full text-left p-2 font-semibold"
+            onClick={() => toggleSection(title)}
+          >
+            {title}
+            <img
+              src="/assets/plus.png"
+              alt="Toggle"
+              className={`w-5 h-5 transition-transform duration-300 ${
+                expandedSection === title ? 'rotate-45' : 'rotate-0'
+              }`}
+            />
+          </button>
+          <div
+            className={`overflow-hidden transition-max-h duration-300 ${
+              expandedSection === title ? 'max-h-40' : 'max-h-0'
+            }`}
+          >
+            <p
+              style={{ fontFamily: 'Bodoni' }}
+              className="p-3 text-gray-700"
+            >
+              {content}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
