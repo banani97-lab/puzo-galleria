@@ -28,10 +28,10 @@ export function Header({
     const { shop, menu } = header;
     return (
         <>
-            <div className=' font-sans w-full bg-[#62492C] text-white text-center text-normal py-1'>
+            <div style={{ fontFamily: 'Bodoni', fontWeight: 600}} className='w-full bg-[#62492C] text-white text-center text-normal py-1'>
                 FREE SHIPPING EU
             </div>
-            <header className="header font-sans">
+            <header className="header">
                 <HeaderMenu
                     menu={menu}
                     viewport="desktop"
