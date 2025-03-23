@@ -88,9 +88,9 @@ export default function Homepage() {
                             className="max-w-[80%] h-auto object-contain"
                         />
 
-                        <button style={{ fontFamily: 'bodoni' }} className="absolute bottom-5 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] text-white hover:bg-[#503D25] transition">
+                        <Link to={`/products/${data.products.nodes[0].handle}`} style={{ fontFamily: 'bodoni' }} className="absolute bottom-5 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] !text-white hover:bg-[#503D25] transition">
                             Shop Now
-                        </button>
+                        </Link>
                     </div>
 
                     <h2 style={{ fontFamily: "Bodoni" }} className="mt-4 text-2xl font-bold text-center text-black">
@@ -132,9 +132,9 @@ export default function Homepage() {
                                 className="max-w-[80%] h-auto object-contain"
                             />
 
-                            <button style={{ fontFamily: 'bodoni' }} className="absolute bottom-5 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] text-white hover:bg-[#503D25] transition">
+                            <Link to={`/products/${data.products.nodes[0].handle}`} style={{ fontFamily: 'bodoni' }} className="absolute bottom-5 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] !text-white hover:bg-[#503D25] transition">
                                 Shop Now
-                            </button>
+                            </Link>
                         </div>
 
                         <h2 style={{ fontFamily: "Bodoni" }} className="mt-4 text-2xl font-bold text-center text-black">

@@ -4,6 +4,7 @@ import type { CartApiQueryFragment } from 'storefrontapi.generated';
 import { useAside } from '~/components/Aside';
 import { CartLineItem } from '~/components/CartLineItem';
 import { CartSummary } from './CartSummary';
+import { useState } from 'react';
 
 export type CartLayout = 'page' | 'aside';
 
@@ -29,20 +30,26 @@ export function CartMain({ layout, cart: originalCart }: CartMainProps) {
   const cartHasItems = cart?.totalQuantity && cart?.totalQuantity > 0;
 
   return (
-    <div className={className}>
-      <CartEmpty hidden={linesCount} layout={layout} />
-      <div className="cart-details">
-        <div aria-labelledby="cart-lines">
-          <ul>
-            {(cart?.lines?.nodes ?? []).map((line) => (
-              <CartLineItem key={line.id} line={line} layout={layout} />
-            ))}
-          </ul>
+    <div className="cart-main flex flex-col h-full">
+      <div className="cart-content flex-grow overflow-y-auto">
+        <CartEmpty hidden={linesCount} layout={layout} />
+        <div className="cart-details">
+          <div aria-labelledby="cart-lines">
+            <ul>
+              {(cart?.lines?.nodes ?? []).map((line) => (
+                <CartLineItem key={line.id} line={line} layout={layout} />
+              ))}
+            </ul>
+          </div>
+          {cartHasItems && <CartSummary cart={cart} layout={layout} />}
         </div>
-        {cartHasItems && <CartSummary cart={cart} layout={layout} />}
       </div>
+  
+      {/* Drawer always at the bottom */}
+      <CartDrawer />
     </div>
   );
+  
 }
 
 function CartEmpty({
@@ -72,11 +79,64 @@ function CartEmpty({
         You have no items in your basket
       </p>
       <br />
+    </div>
+  );
+}
 
-      {/* Continue Shopping Link */}
-      <Link to="/collections" onClick={close} prefetch="viewport" className="text-[#62492C] font-bold">
-        Continue shopping →
-      </Link>
+function CartDrawer() {
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  const toggleSection = (section: string) => {
+    setExpandedSection(expandedSection === section ? null : section);
+  };
+
+  return (
+    <div className="cart-drawer p-3 mt-6 border-t fixed bottom-0 border-gray-300">
+      {[
+        {
+          title: 'Delivery Estimate',
+          content: (
+            <>
+              Denmark: 1-2 Business Days
+              <br />
+              Rest of Europe: 2-7 Business Days
+            </>
+          ),
+        },
+        {
+          title: 'Returns',
+          content: (
+            <>
+              Denmark: 1-2 Business Days
+              <br />
+              EU: 2-7 Business Days
+            </>
+          ),
+        },
+        {
+          title: 'Contact Us',
+          content: 'Feel free to contact us at contact@puzo.com',
+        },
+      ].map(({ title, content }) => (
+        <div key={title} className="mb-4 border-b border-gray-300 pb-2">
+          <button
+          style={{ fontFamily: "Bodoni"}}
+            className="flex justify-between items-center w-full text-left p-2 font-semibold"
+            onClick={() => toggleSection(title)}
+          >
+            {title}
+            <img
+              src="app/assets/plus.png"
+              alt="Toggle"
+              className={`w-5 h-5 transition-transform duration-300 ${expandedSection === title ? 'rotate-45' : 'rotate-0'
+                }`}
+            />
+          </button>
+          <div className={`overflow-hidden transition-max-h duration-300 ${expandedSection === title ? 'max-h-40' : 'max-h-0'}`}>
+            <p style={{ fontFamily: "Bodoni"}} className="p-3 text-gray-700">{content}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
