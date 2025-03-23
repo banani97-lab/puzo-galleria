@@ -22,7 +22,6 @@ img {
 * --------------------------------------------------
 */
 .link:hover {
-  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -152,7 +151,6 @@ button.reset:not(:has(> *)) {
 }
 
 button.reset:hover:not(:has(> *)) {
-  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -514,8 +512,13 @@ button.reset:hover:not(:has(> *)) {
 
 
 @font-face {
-  font-family: 'Rollercoaster Sans-Serif';
-  src: url('public/fonts/RollerCoaster-OxZP.ttf') format('truetype');
+  font-family: 'RollerCoaster';
+  src: url('/fonts/Roller Coaster.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bodoni';
+  src: url('/fonts/Bodoni.ttf');
 }

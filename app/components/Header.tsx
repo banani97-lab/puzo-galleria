@@ -1,12 +1,14 @@
-import {Suspense} from 'react';
-import {Await, NavLink, useAsyncValue} from '@remix-run/react';
+import { Suspense } from 'react';
+import { Await, NavLink, useAsyncValue } from '@remix-run/react';
 import {
     type CartViewPayload,
     useAnalytics,
     useOptimisticCart,
 } from '@shopify/hydrogen';
-import type {HeaderQuery, CartApiQueryFragment} from 'storefrontapi.generated';
-import {useAside} from '~/components/Aside';
+import type { HeaderQuery, CartApiQueryFragment } from 'storefrontapi.generated';
+import { useAside } from '~/components/Aside';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import { Badge } from '@mui/material';
 
 interface HeaderProps {
     header: HeaderQuery;
@@ -18,12 +20,12 @@ interface HeaderProps {
 type Viewport = 'desktop' | 'mobile';
 
 export function Header({
-                           header,
-                           isLoggedIn,
-                           cart,
-                           publicStoreDomain,
-                       }: HeaderProps) {
-    const {shop, menu} = header;
+    header,
+    isLoggedIn,
+    cart,
+    publicStoreDomain,
+}: HeaderProps) {
+    const { shop, menu } = header;
     return (
         <>
             <div className=' font-sans w-full bg-[#62492C] text-white text-center text-normal py-1'>
@@ -40,63 +42,52 @@ export function Header({
                     <NavLink
                         prefetch="intent"
                         to="/"
-                        className='flex-grow justify-center text-center font-bold text-large'
+                        className='flex-grow justify-center text-center font-bold text-xl'
                         style={activeLinkStyle}
                         end>
                         <strong>{shop.name.split(" ")[0].toLocaleUpperCase()}</strong>
                     </NavLink>
                 </div>
-                <HeaderCtas cart={cart}/>
+                <HeaderCtas cart={cart} />
             </header>
         </>
     );
 }
 
 export function HeaderMenu({
-                               menu,
-                               primaryDomainUrl,
-                               viewport,
-                               publicStoreDomain,
-                           }: {
+    menu,
+    primaryDomainUrl,
+    viewport,
+    publicStoreDomain,
+}: {
     menu: HeaderProps['header']['menu'];
     primaryDomainUrl: HeaderProps['header']['shop']['primaryDomain']['url'];
     viewport: Viewport;
     publicStoreDomain: HeaderProps['publicStoreDomain'];
 }) {
     const className = `header-menu-${viewport}`;
-    const {close} = useAside();
+    const { close } = useAside();
 
     return (
         <nav className={className} role="navigation">
-            {viewport === 'mobile' && (
-                <NavLink
-                    end
-                    onClick={close}
-                    prefetch="intent"
-                    style={activeLinkStyle}
-                    to="/"
-                >
-                    Home
-                </NavLink>
-            )}
             {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
                 if (!item.url) return null;
 
                 // if the url is internal, we strip the domain
                 const url =
                     item.url.includes('myshopify.com') ||
-                    item.url.includes(publicStoreDomain) ||
-                    item.url.includes(primaryDomainUrl)
+                        item.url.includes(publicStoreDomain) ||
+                        item.url.includes(primaryDomainUrl)
                         ? new URL(item.url).pathname
                         : item.url;
                 return (
                     <NavLink
-                        className="header-menu-item"
+                        className="header-menu-item text-md"
                         end
                         key={item.id}
                         onClick={close}
                         prefetch="intent"
-                        style={activeLinkStyle}
+                        style={headerLinkStyle}
                         to={url}
                     >
                         {item.title}
@@ -108,18 +99,18 @@ export function HeaderMenu({
 }
 
 function HeaderCtas({
-                        cart,
-                    }: Pick<HeaderProps, 'cart'>) {
+    cart,
+}: Pick<HeaderProps, 'cart'>) {
     return (
         <nav className="header-ctas" role="navigation">
-            <HeaderMenuMobileToggle/>
-            <CartToggle cart={cart}/>
+            <HeaderMenuMobileToggle />
+            <CartToggle cart={cart} />
         </nav>
     );
 }
 
 function HeaderMenuMobileToggle() {
-    const {open} = useAside();
+    const { open } = useAside();
     return (
         <button
             className="header-menu-mobile-toggle reset"
@@ -131,7 +122,7 @@ function HeaderMenuMobileToggle() {
 }
 
 function SearchToggle() {
-    const {open} = useAside();
+    const { open } = useAside();
     return (
         <button className="reset" onClick={() => open('search')}>
             Search
@@ -139,9 +130,9 @@ function SearchToggle() {
     );
 }
 
-function CartBadge({count}: { count: number | null }) {
-    const {open} = useAside();
-    const {publish, shop, cart, prevCart} = useAnalytics();
+function CartBadge({ count }: { count: number | null }) {
+    const { open } = useAside();
+    const { publish, shop, cart, prevCart } = useAnalytics();
 
     return (
         <a
@@ -156,18 +147,31 @@ function CartBadge({count}: { count: number | null }) {
                     url: window.location.href || '',
                 } as CartViewPayload);
             }}
-            style={{color: '#62492C'}}
+            style={{ color: '#62492C' }}
         >
-            CART {count === null ? <span>&nbsp;</span> : count}
+            <Badge
+                badgeContent={count ?? 0} // Show count or 0 if null
+                color="error" // Red badge color (can be changed)
+                overlap="circular"
+                sx={{
+                    '& .MuiBadge-badge': {
+                        fontSize: '0.6rem', // Adjust badge font size
+                        minWidth: '20px', // Minimum width of badge
+                        height: '20px', // Height of badge
+                    }
+                }}
+            >
+                <ShoppingCartIcon style={{ fontSize: '40px' }} /> {/* Make the icon bigger */}
+            </Badge>
         </a>
     );
 }
 
-function CartToggle({cart}: Pick<HeaderProps, 'cart'>) {
+function CartToggle({ cart }: Pick<HeaderProps, 'cart'>) {
     return (
-        <Suspense fallback={<CartBadge count={null}/>}>
+        <Suspense fallback={<CartBadge count={null} />}>
             <Await resolve={cart}>
-                <CartBanner/>
+                <CartBanner />
             </Await>
         </Suspense>
     );
@@ -176,7 +180,7 @@ function CartToggle({cart}: Pick<HeaderProps, 'cart'>) {
 function CartBanner() {
     const originalCart = useAsyncValue() as CartApiQueryFragment | null;
     const cart = useOptimisticCart(originalCart);
-    return <CartBadge count={cart?.totalQuantity ?? 0}/>;
+    return <CartBadge count={cart?.totalQuantity ?? 0} />;
 }
 
 const FALLBACK_HEADER_MENU = {
@@ -222,14 +226,32 @@ const FALLBACK_HEADER_MENU = {
 };
 
 function activeLinkStyle({
-                             isActive,
-                             isPending,
-                         }: {
+    isActive,
+    isPending,
+}: {
     isActive: boolean;
     isPending: boolean;
 }) {
     return {
         fontWeight: isActive ? 'bold' : undefined,
+        fontFamily: "Rollercoaster, sans-serif",
+        color: isPending ? 'grey' : '#62492C',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    };
+}
+
+function headerLinkStyle({
+    isActive,
+    isPending,
+}: {
+    isActive: boolean;
+    isPending: boolean;
+}) {
+    return {
+        fontWeight: isActive ? 'bold' : undefined,
+        fontFamily: "Bodoni, sans-serif",
         color: isPending ? 'grey' : '#62492C',
         display: 'flex',
         alignItems: 'center',

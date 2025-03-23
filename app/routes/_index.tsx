@@ -67,28 +67,42 @@ export default function Homepage() {
         <div className="home">
             <div className='flex justify-center'>
                 <video className='w-full' controls>
-                    <source src={'https://www.w3schools.com/html/mov_bbb.mp4'} type='video/mp4'/>
-                    {/* <source src={data.video?.sources[1].url} type='application/x-mpegURL'/> */}
+                    <source src={data.video?.sources[0].url} type='video/mp4' />
+                    {/* <source src={data.video?.sources[1].url} type='application/x-mpegURL' /> */}
                     Your browser doesn't support video
                 </video>
             </div>
-            <div className="w-full flex pt-3 gap-x-1">
-                <div className="w-1/2 flex justify-center items-center p-2" style={{ color: 'white' }}>
+            <div className="w-full flex pt-3">
+                <div className="w-1/2 flex justify-center items-center p-4" style={{ color: 'white' }}>
                     <Image
                         src={data.products.nodes[0].images.nodes[8]?.url}
                         aspectRatio="4/5"
-                        className="w-full object-contain"
+                        className="max-w-[90%] h-auto object-contain"
                     />
                 </div>
-                <div className="w-1/2 flex justify-center items-center p-2" style={{ color: 'white' }}>
-                    <Image
-                        src={data.products.nodes[0].images.nodes[1]?.url}
-                        aspectRatio="4/5"
-                        className="w-full object-contain"
-                    />
+                <div className="w-1/2 flex flex-col justify-center items-center p-4 text-white relative">
+                    <div className="relative w-full flex justify-center">
+                        <Image
+                            src={data.products.nodes[0].images.nodes[1]?.url}
+                            aspectRatio="4/5"
+                            className="max-w-[80%] h-auto object-contain"
+                        />
+
+                        <button style={{ fontFamily: 'bodoni' }} className="absolute bottom-5 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] text-white hover:bg-[#503D25] transition">
+                            Shop Now
+                        </button>
+                    </div>
+
+                    <h2 style={{ fontFamily: "Bodoni" }} className="mt-4 text-2xl font-bold text-center text-black">
+                        {data.products.nodes[0].title}
+                    </h2>
+
+                    <p style={{ fontFamily: "Bodoni" }} className="mt-2 text-lg text-black text-center bodoni">
+                        {data.products.nodes[0].title}
+                    </p>
                 </div>
             </div>
-            <div className='w-full flex pt-4'>
+            <div className='w-full hidden md:flex pt-4'>
                 <div className='w-1/6 p-1 m-1'>
                     <Image src={data.products.nodes[0].images.nodes[4]?.url} aspectRatio="4/5" />
                 </div>
@@ -109,19 +123,35 @@ export default function Homepage() {
                 </div>
             </div>
             <div className='w-full flex pt-4'>
-                <div className='w-1/2'>
-                    <Image
-                        src={data.products.nodes[0].images.nodes[9]?.url}
-                        aspectRatio="4/5"
-                        className="w-full object-contain"
-                    />
-                </div>
-                <div className='w-1/2' style={{ color: 'white' }}>
-                    <Image
-                        src={data.products.nodes[0].images.nodes[0]?.url}
-                        aspectRatio="4/5"
-                        className="w-full object-contain"
-                    />
+                <div className="w-full flex pt-3">
+                    <div className="w-1/2 flex flex-col justify-center items-center p-4 text-white relative">
+                        <div className="relative w-full flex justify-center">
+                            <Image
+                                src={data.products.nodes[0].images.nodes[0]?.url}
+                                aspectRatio="4/5"
+                                className="max-w-[80%] h-auto object-contain"
+                            />
+
+                            <button style={{ fontFamily: 'bodoni' }} className="absolute bottom-5 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] text-white hover:bg-[#503D25] transition">
+                                Shop Now
+                            </button>
+                        </div>
+
+                        <h2 style={{ fontFamily: "Bodoni" }} className="mt-4 text-2xl font-bold text-center text-black">
+                            {data.products.nodes[0].title}
+                        </h2>
+
+                        <p style={{ fontFamily: "Bodoni" }} className="mt-2 text-lg text-black text-center bodoni">
+                            {data.products.nodes[0].title}
+                        </p>
+                    </div>
+                    <div className="w-1/2 flex justify-center items-center p-4" style={{ color: 'white' }}>
+                        <Image
+                            src={data.products.nodes[0].images.nodes[9]?.url}
+                            aspectRatio="4/5"
+                            className="max-w-[90%] h-auto object-contain"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,6 +224,7 @@ const FEATURED_COLLECTION_QUERY = `#graphql
 fragment FeaturedCollection on Collection {
     id
     title
+    description
     image {
         id
         url

@@ -1,9 +1,9 @@
-import {useOptimisticCart} from '@shopify/hydrogen';
-import {Link} from '@remix-run/react';
-import type {CartApiQueryFragment} from 'storefrontapi.generated';
-import {useAside} from '~/components/Aside';
-import {CartLineItem} from '~/components/CartLineItem';
-import {CartSummary} from './CartSummary';
+import { useOptimisticCart } from '@shopify/hydrogen';
+import { Link } from '@remix-run/react';
+import type { CartApiQueryFragment } from 'storefrontapi.generated';
+import { useAside } from '~/components/Aside';
+import { CartLineItem } from '~/components/CartLineItem';
+import { CartSummary } from './CartSummary';
 
 export type CartLayout = 'page' | 'aside';
 
@@ -16,7 +16,7 @@ export type CartMainProps = {
  * The main cart component that displays the cart items and summary.
  * It is used by both the /cart route and the cart aside dialog.
  */
-export function CartMain({layout, cart: originalCart}: CartMainProps) {
+export function CartMain({ layout, cart: originalCart }: CartMainProps) {
   // The useOptimisticCart hook applies pending actions to the cart
   // so the user immediately sees feedback when they modify the cart.
   const cart = useOptimisticCart(originalCart);
@@ -51,16 +51,30 @@ function CartEmpty({
   hidden: boolean;
   layout?: CartMainProps['layout'];
 }) {
-  const {close} = useAside();
+  const { close } = useAside();
   return (
-    <div hidden={hidden}>
+    <div hidden={hidden} className="flex flex-col items-center text-center">
       <br />
-      <p>
-        Looks like you haven&rsquo;t added anything yet, let&rsquo;s get you
-        started!
+
+      {/* Centered Image */}
+      <div className="flex justify-center w-full">
+        <img
+          src="app/assets/EmptyState.png"
+          style={{
+            maxWidth: '50%',
+            height: 'auto',
+          }}
+          alt="Empty Cart"
+        />
+      </div>
+      {/* Empty Cart Message */}
+      <p style={{ fontFamily: 'Bodoni', textAlign: 'center', padding: "1rem" }}>
+        You have no items in your basket
       </p>
       <br />
-      <Link to="/collections" onClick={close} prefetch="viewport">
+
+      {/* Continue Shopping Link */}
+      <Link to="/collections" onClick={close} prefetch="viewport" className="text-[#62492C] font-bold">
         Continue shopping →
       </Link>
     </div>
