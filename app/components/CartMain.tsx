@@ -66,7 +66,7 @@ function CartEmpty({
       {/* Centered Image */}
       <div className="flex justify-center w-full">
         <img
-          src="app/assets/EmptyState.png"
+          src="public/assets/EmptyState.png"
           style={{
             maxWidth: '50%',
             height: 'auto',
@@ -126,7 +126,7 @@ function CartDrawer() {
           >
             {title}
             <img
-              src="app/assets/plus.png"
+              src="public/assets/plus.png"
               alt="Toggle"
               className={`w-5 h-5 transition-transform duration-300 ${expandedSection === title ? 'rotate-45' : 'rotate-0'
                 }`}
