@@ -14,7 +14,7 @@ export function CartSummary({cart, layout}: CartSummaryProps) {
     layout === 'page' ? 'cart-summary-page' : 'cart-summary-aside';
 
   return (
-    <div aria-labelledby="cart-summary" className={className}>
+    <div style={{ fontFamily: 'Bodoni'}} aria-labelledby="cart-summary" className={className}>
       <h4>Totals</h4>
       <dl className="cart-subtotal">
         <dt>Subtotal</dt>
@@ -26,8 +26,6 @@ export function CartSummary({cart, layout}: CartSummaryProps) {
           )}
         </dd>
       </dl>
-      <CartDiscounts discountCodes={cart.discountCodes} />
-      <CartGiftCard giftCardCodes={cart.appliedGiftCards} />
       <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
     </div>
   );

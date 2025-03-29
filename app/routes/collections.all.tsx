@@ -4,6 +4,7 @@ import {getPaginationVariables, Image, Money} from '@shopify/hydrogen';
 import type {ProductItemFragment} from 'storefrontapi.generated';
 import {useVariantUrl} from '~/lib/variants';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
+import { useState } from 'react';
 
 export const meta: MetaFunction<typeof loader> = () => {
   return [{title: `Hydrogen | Products`}];
@@ -49,10 +50,10 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
 
 export default function Collection() {
   const {products} = useLoaderData<typeof loader>();
+  console.log(products)
 
   return (
-    <div className="collection">
-      <h1>Products</h1>
+    <div className="collection flex">
       <PaginatedResourceSection
         connection={products}
         resourcesClassName="products-grid"
@@ -77,24 +78,31 @@ function ProductItem({
   loading?: 'eager' | 'lazy';
 }) {
   const variantUrl = useVariantUrl(product.handle);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const mainImage = product.featuredImage;
+  const hoverImage = product.images.nodes[1];
+
+  const imageToShow = isHovered ? hoverImage : mainImage
+
   return (
     <Link
       className="product-item"
       key={product.id}
       prefetch="intent"
       to={variantUrl}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {product.featuredImage && (
         <Image
-          alt={product.featuredImage.altText || product.title}
+          alt={imageToShow!.altText || product.title}
           aspectRatio="1/1"
-          data={product.featuredImage}
+          data={imageToShow!}
           loading={loading}
           sizes="(min-width: 45em) 400px, 100vw"
         />
-      )}
-      <h4>{product.title}</h4>
-      <small>
+      <h4 style={{ fontFamily: 'Bodoni'}}>{product.title}</h4>
+      <small style={{ fontFamily: 'Bodoni'}}>
         <Money data={product.priceRange.minVariantPrice} />
       </small>
     </Link>
@@ -116,6 +124,15 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
       url
       width
       height
+    }
+    images(first: 10) {
+      nodes {
+        id
+        altText
+        url
+        width
+        height
+      }
     }
     priceRange {
       minVariantPrice {

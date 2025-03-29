@@ -31,7 +31,7 @@ export function CartMain({ layout, cart: originalCart }: CartMainProps) {
 
   return (
     <div className="cart-main flex flex-col h-full">
-      <div className="cart-content flex-grow overflow-y-auto">
+      <div className="cart-content flex-grow overflow-y-auto pb-24"> {/* match h-24 */}
         <CartEmpty hidden={linesCount} layout={layout} />
         <div className="cart-details">
           <div aria-labelledby="cart-lines">
@@ -44,12 +44,12 @@ export function CartMain({ layout, cart: originalCart }: CartMainProps) {
           {cartHasItems && <CartSummary cart={cart} layout={layout} />}
         </div>
       </div>
-  
+
       {/* Drawer always at the bottom */}
       <CartDrawer />
     </div>
   );
-  
+
 }
 
 function CartEmpty({
@@ -91,7 +91,7 @@ function CartDrawer() {
   };
 
   return (
-    <div className="cart-drawer p-3 mt-6 border-t fixed bottom-0 border-gray-300">
+    <div className="fixed bottom-0 left-0 w-full bg-white shadow-md z-10 h-50">
       {[
         {
           title: 'Delivery Estimate',
@@ -120,7 +120,7 @@ function CartDrawer() {
       ].map(({ title, content }) => (
         <div key={title} className="mb-4 border-b border-gray-300 pb-2">
           <button
-          style={{ fontFamily: "Bodoni"}}
+            style={{ fontFamily: "Bodoni" }}
             className="flex justify-between items-center w-full text-left p-2 font-semibold"
             onClick={() => toggleSection(title)}
           >
@@ -133,7 +133,7 @@ function CartDrawer() {
             />
           </button>
           <div className={`overflow-hidden transition-max-h duration-300 ${expandedSection === title ? 'max-h-40' : 'max-h-0'}`}>
-            <p style={{ fontFamily: "Bodoni"}} className="p-3 text-gray-700">{content}</p>
+            <p style={{ fontFamily: "Bodoni" }} className="p-3 text-gray-700">{content}</p>
           </div>
         </div>
       ))}
