@@ -132,7 +132,7 @@ function CartDrawer() {
                 }`}
             />
           </button>
-          <div className={`overflow-hidden transition-max-h duration-300 ${expandedSection === title ? 'max-h-40' : 'max-h-0'}`}>
+          <div className={`overflow-hidden transition-max-h duration-300 pl-2 ${expandedSection === title ? 'max-h-40' : 'max-h-0'}`}>
             <p style={{ fontFamily: "Bodoni" }} className="p-3 text-gray-700">{content}</p>
           </div>
         </div>
