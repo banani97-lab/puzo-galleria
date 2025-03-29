@@ -62,7 +62,6 @@ function loadDeferredData({ context }: LoaderFunctionArgs) {
 
 export default function Homepage() {
     const data = useLoaderData<typeof loader>();
-    console.log('eighthimage', data.products.nodes[0].images.nodes[8])
     return (
         <div className="home">
             <div className='flex justify-center'>

@@ -26,7 +26,6 @@ export function Header({
     publicStoreDomain,
 }: HeaderProps) {
     const { shop, menu } = header;
-    console.log('menu', menu)
     return (
         <>
             <div style={{ fontFamily: 'Bodoni', fontWeight: 600}} className='w-full bg-[#62492C] text-white text-center text-normal py-1'>
