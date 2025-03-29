@@ -192,7 +192,7 @@ function CartDrawer() {
             />
           </button>
           <div
-            className={`overflow-hidden transition-max-h duration-300 ${
+            className={`pl-2 overflow-hidden transition-max-h duration-300 ${
               expandedSection === title ? 'max-h-40' : 'max-h-0'
             }`}
           >
