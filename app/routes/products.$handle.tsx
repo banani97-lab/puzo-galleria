@@ -101,12 +101,13 @@ export default function Product() {
   return (
     <div className="product">
       <ProductImage image={selectedVariant?.image} />
-      <div className="product-main">
+      <div style={{ fontFamily: 'Bodoni'}} className="product-main">
         <h1>{title}</h1>
         <ProductPrice
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}
         />
+        <h5 style={{ fontFamily: 'Bodoni'}}>Tax Included</h5>
         <br />
         <ProductForm
           productOptions={productOptions}
@@ -114,13 +115,8 @@ export default function Product() {
         />
         <br />
         <br />
-        <p>
-          <strong style={{ fontFamily: 'Bodoni'}}>Description</strong>
-        </p>
         <br />
-        <p style={{ fontFamily: 'Bodoni'}}>{product.description}</p>
-        <br />
-        <CartDrawer/>
+        <CartDrawer description={product.description} />
       </div>
       <Analytics.ProductView
         data={{
@@ -141,7 +137,11 @@ export default function Product() {
   );
 }
 
-function CartDrawer() {
+type CartDrawerProps = {
+  description: string
+}
+
+function CartDrawer({ description}: CartDrawerProps) {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   const toggleSection = (section: string) => {
@@ -149,8 +149,16 @@ function CartDrawer() {
   };
 
   return (
-    <div className="cart-drawer w-full bg-white">
+    <div className="cart-drawer w-full bg-white" style={{ fontFamily: 'Bodoni'}}>
       {[
+        {
+          title: 'Description',
+          content: (
+            <>
+            { description }
+            </>
+          )
+        },
         {
           title: 'Delivery Estimate',
           content: (

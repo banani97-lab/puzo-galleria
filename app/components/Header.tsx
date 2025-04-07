@@ -28,7 +28,7 @@ export function Header({
     const { shop, menu } = header;
     return (
         <>
-            <div style={{ fontFamily: 'Bodoni', fontWeight: 600}} className='w-full bg-[#62492C] text-white text-center text-normal py-1'>
+            <div style={{ height: '30px', fontFamily: 'Bodoni', fontWeight: 500}} className='w-full bg-[#62492C] text-white text-center text-normal py-1'>
                 FREE SHIPPING EU
             </div>
             <header className="header">
@@ -38,7 +38,7 @@ export function Header({
                     primaryDomainUrl={header.shop.primaryDomain.url}
                     publicStoreDomain={publicStoreDomain}
                 />
-                <div className="absolute left-1/2 top-1/3 transform -translate-x-1/2 flex items-center">
+                <div className="absolute left-1/2 top-1/3 transform -translate-x-1/2 -translate-y-1/5 flex items-center">
                     <NavLink
                         prefetch="intent"
                         to="/"

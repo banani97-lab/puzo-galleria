@@ -91,7 +91,7 @@ function CartDrawer() {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-white shadow-md z-10 h-50">
+    <div className="fixed bottom-0 left-0 w-full bg-white shadow-md z-10 h-55">
       {[
         {
           title: 'Delivery Estimate',

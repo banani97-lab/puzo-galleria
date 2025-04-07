@@ -26,6 +26,7 @@ export function AddToCartButton({
           <button
             type="submit"
             style={{
+              width: '100%',
               fontFamily: 'Bodoni',
               border: '1px solid black', // Black rectangular border
               padding: '10px 20px', // Adjust padding for better appearance

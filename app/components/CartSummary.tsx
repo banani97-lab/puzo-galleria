@@ -15,17 +15,6 @@ export function CartSummary({cart, layout}: CartSummaryProps) {
 
   return (
     <div style={{ fontFamily: 'Bodoni'}} aria-labelledby="cart-summary" className={className}>
-      <h4>Totals</h4>
-      <dl className="cart-subtotal">
-        <dt>Subtotal</dt>
-        <dd>
-          {cart.cost?.subtotalAmount?.amount ? (
-            <Money data={cart.cost?.subtotalAmount} />
-          ) : (
-            '-'
-          )}
-        </dd>
-      </dl>
       <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
     </div>
   );
