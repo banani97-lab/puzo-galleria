@@ -70,7 +70,8 @@ export function HeaderMenu({
 
     return (
         <nav className={className} role="navigation">
-            {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
+            {(menu || FALLBACK_HEADER_MENU).items
+                .map((item) => {
                 if (!item.url) return null;
 
                 // if the url is internal, we strip the domain
@@ -78,7 +79,7 @@ export function HeaderMenu({
                     item.url.includes('myshopify.com') ||
                         item.url.includes(publicStoreDomain) ||
                         item.url.includes(primaryDomainUrl)
-                        ? new URL(item.url).pathname
+                        ? new URL(item.url).pathname.replace(/^\/pages/, '')
                         : item.url;
                 return (
                     <NavLink
