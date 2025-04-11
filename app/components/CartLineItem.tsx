@@ -28,7 +28,7 @@ export function CartLineItem({
   return (
     <li key={id} className="cart-line flex gap-4 p-4 border-b">
       {image && (
-        <div className={`${layout === 'aside' ? 'w-32 h-40' : 'w-24 h-32'} flex-shrink-0`}>
+        <div className={`${layout === 'aside' ? 'w-48 h-60' : 'w-40 h-52'} flex-shrink-0`}>
           <Image
             alt={title}
             aspectRatio="4/5"
