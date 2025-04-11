@@ -28,7 +28,7 @@ export function CartLineItem({
   return (
     <li key={id} className="cart-line flex gap-4 p-4 border-b">
       {image && (
-        <div className="w-24 h-32 flex-shrink-0">
+        <div className={`${layout === 'aside' ? 'w-32 h-40' : 'w-24 h-32'} flex-shrink-0`}>
           <Image
             alt={title}
             aspectRatio="4/5"
@@ -40,23 +40,26 @@ export function CartLineItem({
       )}
 
       <div className="flex flex-col justify-between flex-grow">
-        <Link
-          style={{ fontFamily: 'Bodoni'}}
-          prefetch="intent"
-          to={lineItemUrl}
-          onClick={() => {
-            if (layout === 'aside') {
-              close();
-            }
-          }}
-          className="text-base font-semibold hover:underline"
-        >
-          {product.title}
-        </Link>
+        <div className="flex justify-between items-start">
+          <Link
+            style={{ fontFamily: 'Bodoni'}}
+            prefetch="intent"
+            to={lineItemUrl}
+            onClick={() => {
+              if (layout === 'aside') {
+                close();
+              }
+            }}
+            className={`${layout === 'aside' ? 'text-lg' : 'text-base'} font-semibold hover:underline`}
+          >
+            {product.title}
+          </Link>
+          <CartLineRemoveButton lineIds={[id]} disabled={!!line.isOptimistic} />
+        </div>
 
         <ProductPrice price={line?.cost?.totalAmount} />
 
-        <ul className="text-sm text-gray-600 mt-1">
+        <ul className={`${layout === 'aside' ? 'text-base' : 'text-sm'} text-gray-600 mt-1`}>
           {selectedOptions.map((option) => (
             <li key={option.name}>
               {option.name}: {option.value}
@@ -67,7 +70,7 @@ export function CartLineItem({
         </ul>
 
         <div className="mt-2">
-          <CartLineQuantity line={line} />
+          <CartLineQuantity line={line} layout={layout} />
         </div>
       </div>
     </li>
@@ -80,38 +83,37 @@ export function CartLineItem({
  * These controls are disabled when the line item is new, and the server
  * hasn't yet responded that it was successfully added to the cart.
  */
-function CartLineQuantity({ line }: { line: CartLine }) {
+function CartLineQuantity({ line, layout }: { line: CartLine; layout: CartLayout }) {
   if (!line || typeof line?.quantity === 'undefined') return null;
   const { id: lineId, quantity, isOptimistic } = line;
   const prevQuantity = Number(Math.max(0, quantity - 1).toFixed(0));
   const nextQuantity = Number((quantity + 1).toFixed(0));
 
   return (
-    <div className="cart-line-quantity">
-      <small>Quantity: {quantity} &nbsp;&nbsp;</small>
+    <div className="cart-line-quantity flex items-center">
+      <small className={`${layout === 'aside' ? 'text-base' : 'text-sm'} mr-2`}>Quantity: {quantity}</small>
       <CartLineUpdateButton lines={[{ id: lineId, quantity: prevQuantity }]}>
         <button
           aria-label="Decrease quantity"
           disabled={quantity <= 1 || !!isOptimistic}
           name="decrease-quantity"
           value={prevQuantity}
+          className={`${layout === 'aside' ? 'px-3 py-1.5' : 'px-2 py-1'} border rounded-l hover:bg-gray-100 disabled:opacity-50`}
         >
-          <span>&#8722; </span>
+          <span>&#8722;</span>
         </button>
       </CartLineUpdateButton>
-      &nbsp;
       <CartLineUpdateButton lines={[{ id: lineId, quantity: nextQuantity }]}>
         <button
           aria-label="Increase quantity"
           name="increase-quantity"
           value={nextQuantity}
           disabled={!!isOptimistic}
+          className={`${layout === 'aside' ? 'px-3 py-1.5' : 'px-2 py-1'} border rounded-r hover:bg-gray-100 disabled:opacity-50`}
         >
           <span>&#43;</span>
         </button>
       </CartLineUpdateButton>
-      &nbsp;
-      <CartLineRemoveButton lineIds={[lineId]} disabled={!!isOptimistic} />
     </div>
   );
 }
@@ -134,7 +136,11 @@ function CartLineRemoveButton({
       action={CartForm.ACTIONS.LinesRemove}
       inputs={{ lineIds }}
     >
-      <button className='ml-[500%]' disabled={disabled} type="submit">
+      <button 
+        className="text-sm text-gray-500 hover:text-gray-700 disabled:opacity-50" 
+        disabled={disabled} 
+        type="submit"
+      >
         Remove
       </button>
     </CartForm>
