@@ -149,71 +149,66 @@ function CartDrawer({ description}: CartDrawerProps) {
   };
 
   return (
-    <div className="cart-drawer w-full bg-white" style={{ fontFamily: 'Bodoni'}}>
-      {[
-        {
-          title: 'Description',
-          content: (
-            <>
-            { description }
-            </>
-          )
-        },
-        {
-          title: 'Delivery Estimate',
-          content: (
-            <>
-              Denmark: 1-2 Business Days
-              <br />
-              Rest of Europe: 2-7 Business Days
-            </>
-          ),
-        },
-        {
-          title: 'Returns',
-          content: (
-            <>
-              Denmark: 1-2 Business Days
-              <br />
-              EU: 2-7 Business Days
-            </>
-          ),
-        },
-        {
-          title: 'Contact Us',
-          content: 'Feel free to contact us at contact@puzo.com',
-        },
-      ].map(({ title, content }) => (
-        <div key={title} className="mb-4 border-b border-gray-300 pb-2">
-          <button
-            style={{ fontFamily: 'Bodoni' }}
-            className="flex justify-between items-center w-full text-left p-2 font-semibold"
-            onClick={() => toggleSection(title)}
-          >
-            {title}
-            <img
-              src="/assets/plus.png"
-              alt="Toggle"
-              className={`w-5 h-5 transition-transform duration-300 ${
-                expandedSection === title ? 'rotate-45' : 'rotate-0'
-              }`}
-            />
-          </button>
-          <div
-            className={`pl-2 overflow-hidden transition-max-h duration-300 ${
-              expandedSection === title ? 'max-h-40' : 'max-h-0'
-            }`}
-          >
-            <p
-              style={{ fontFamily: 'Bodoni' }}
-              className="p-3 text-gray-700"
+      <div className="max-w-7xl mx-auto py-3">
+        {[
+          {
+            title: 'Description',
+            content: (
+              <div className="space-y-2">
+                {description}
+              </div>
+            ),
+          },
+          {
+            title: 'Delivery Estimate',
+            content: (
+              <div className="space-y-2">
+                <p>Denmark: 1-2 Business Days</p>
+                <p>Rest of Europe: 2-7 Business Days</p>
+              </div>
+            ),
+          },
+          {
+            title: 'Returns',
+            content: (
+              <div className="space-y-2">
+                <p>Denmark: 1-2 Business Days</p>
+                <p>EU: 2-7 Business Days</p>
+              </div>
+            ),
+          },
+          {
+            title: 'Contact Us',
+            content: 'Feel free to contact us at contact@puzo.com',
+          },
+        ].map(({ title, content }) => (
+          <div key={title} className="border-b border-gray-100 last:border-b-0">
+            <button
+              style={{ fontFamily: "Bodoni" }}
+              className="flex justify-between items-center w-full text-left py-3 px-2 hover:bg-gray-50 transition-colors duration-200"
+              onClick={() => toggleSection(title)}
             >
-              {content}
-            </p>
+              <span className="text-lg">{title}</span>
+              <img
+                src="/assets/plus.png"
+                alt="Toggle"
+                className={`w-4 h-4 transition-transform duration-300 ${
+                  expandedSection === title ? 'rotate-45' : 'rotate-0'
+                }`}
+              />
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                expandedSection === title ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
+              <div className="px-2 pb-3 text-gray-600" style={{ fontFamily: "Bodoni" }}>
+                {content}
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
   );
 }
 

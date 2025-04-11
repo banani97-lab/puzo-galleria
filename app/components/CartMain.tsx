@@ -31,7 +31,7 @@ export function CartMain({ layout, cart: originalCart }: CartMainProps) {
 
   return (
     <div className="cart-main flex flex-col h-full">
-      <div className="cart-content flex-grow overflow-y-auto pb-32"> {/* Increased padding to account for summary and drawer */}
+      <div className="cart-content flex-grow overflow-y-auto pb-24"> {/* match h-24 */}
         <CartEmpty hidden={linesCount} layout={layout} />
         <div className="cart-details">
           <div aria-labelledby="cart-lines">
