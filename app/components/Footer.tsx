@@ -53,7 +53,6 @@ export function Footer({
                   <h3 className="text-[#62492C] font-bold mb-4">SUPPORT</h3>
                   <div className="flex flex-col space-y-2">
                     <a href="/returns" className="text-[#62492C] hover:opacity-80">Returns</a>
-                    <a href="/order-tracking" className="text-[#62492C] hover:opacity-80">Order Tracking</a>
                     <a href="/faq" className="text-[#62492C] hover:opacity-80">FAQ</a>
                     <a href="/contact" className="text-[#62492C] hover:opacity-80">Contact</a>
                   </div>
