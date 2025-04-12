@@ -107,7 +107,7 @@ export default function Product() {
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}
         />
-        <h5 style={{ fontFamily: 'Bodoni'}}>Tax Included</h5>
+        <h5 style={{ fontFamily: 'Bodoni'}}>TAX INCLUDED</h5>
         <br />
         <ProductForm
           productOptions={productOptions}
@@ -152,7 +152,7 @@ function CartDrawer({ description}: CartDrawerProps) {
       <div className="max-w-7xl mx-auto py-3">
         {[
           {
-            title: 'Description'.toLocaleUpperCase(),
+            title: 'Description'.toUpperCase(),
             content: (
               <div className="space-y-2">
                 {description}
@@ -160,7 +160,7 @@ function CartDrawer({ description}: CartDrawerProps) {
             ),
           },
           {
-            title: 'Delivery Estimate'.toLocaleUpperCase(),
+            title: 'Delivery Estimate'.toUpperCase(),
             content: (
               <div className="space-y-2">
                 <p>Denmark: 1-2 Business Days</p>
@@ -169,7 +169,7 @@ function CartDrawer({ description}: CartDrawerProps) {
             ),
           },
           {
-            title: 'Returns'.toLocaleUpperCase(),
+            title: 'Returns'.toUpperCase(),
             content: (
               <div className="space-y-2">
                 <p>Denmark: 1-2 Business Days</p>
@@ -178,11 +178,11 @@ function CartDrawer({ description}: CartDrawerProps) {
             ),
           },
           {
-            title: 'Contact Us'.toLocaleUpperCase(),
+            title: 'Contact Us'.toUpperCase(),
             content: 'Feel free to contact us at contact@puzo.com',
           },
         ].map(({ title, content }) => (
-          <div key={title} className="border-b border-gray-100 last:border-b-0">
+          <div key={title} className="border-b-2 border-gray-300 last:border-b-0">
             <button
               style={{ fontFamily: "Bodoni" }}
               className="flex justify-between items-center w-full text-left py-3 px-2 hover:bg-gray-50 transition-colors duration-200"

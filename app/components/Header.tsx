@@ -28,7 +28,7 @@ export function Header({
     const { shop, menu } = header;
     return (
         <>
-            <div style={{ height: '30px', fontFamily: 'Bodoni', fontWeight: 500}} className='w-full bg-[#62492C] text-white text-center text-normal py-1'>
+            <div style={{ height: '30px', fontFamily: 'Bodoni', fontWeight: 300}} className='w-full bg-[#62492C] text-white text-center text-sm py-1'>
                 FREE SHIPPING EU
             </div>
             <header className="header">

@@ -8,7 +8,7 @@ import type {
 } from 'storefrontapi.generated';
 
 export const meta: MetaFunction = () => {
-    return [{ title: 'Hydrogen | Home' }];
+    return [{ title: 'PUZO GALLERIA' }];
 };
 
 export async function loader(args: LoaderFunctionArgs) {
@@ -64,7 +64,7 @@ export default function Homepage() {
     const data = useLoaderData<typeof loader>();
     return (
         <div className="home">
-            <div className='flex justify-center'>
+            <div>
                 <video className='w-full' controls>
                     <source src={data.video?.sources[0].url} type='video/mp4' />
                     {/* <source src={data.video?.sources[1].url} type='application/x-mpegURL' /> */}
@@ -72,27 +72,27 @@ export default function Homepage() {
                 </video>
             </div>
             <div className="w-full flex pt-3">
-                <div className="w-1/2 flex justify-center items-center p-4" style={{ color: 'white' }}>
+                <div className="w-1/2 flex items-center" style={{ color: 'white' }}>
                     <Image
                         src={data.products.nodes[0].images.nodes[8]?.url}
                         aspectRatio="4/5"
-                        className="max-w-[90%] h-auto object-contain"
+                        className="w-full h-auto object-contain"
                     />
                 </div>
-                <div className="w-1/2 flex flex-col justify-center items-center p-4 text-white relative">
+                <div className="w-2/5 flex flex-col justify-center items-center text-white relative mx-auto">
                     <div className="relative w-full flex justify-center">
                         <Image
-                            src={data.products.nodes[0].images.nodes[1]?.url}
+                            src={data.products.nodes[0].images.nodes[0]?.url}
                             aspectRatio="4/5"
-                            className="max-w-[80%] h-auto object-contain"
+                            className="max-w-[75%] h-auto object-contain"
                         />
 
-                        <Link to={`/products/${data.products.nodes[0].handle}`} style={{ fontFamily: 'bodoni' }} className="absolute bottom-5 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] !text-white hover:bg-[#503D25] transition">
+                        <Link to={`/products/${data.products.nodes[0].handle}`} style={{ fontFamily: 'bodoni' }} className="absolute bottom-20 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] !text-white hover:bg-[#503D25] transition">
                             Shop Now
                         </Link>
                     </div>
 
-                    <h2 style={{ fontFamily: "Bodoni" }} className="mt-4 text-2xl font-bold text-center text-black">
+                    <h2 style={{ fontFamily: "Bodoni", paddingTop: '2rem' }} className="mt-4 text-2xl font-bold text-center text-black">
                         {data.products.nodes[0].title}
                     </h2>
 
@@ -123,20 +123,20 @@ export default function Homepage() {
             </div>
             <div className='w-full flex pt-4'>
                 <div className="w-full flex pt-3">
-                    <div className="w-1/2 flex flex-col justify-center items-center p-4 text-white relative">
+                    <div className="w-2/5 flex flex-col justify-center items-center text-white relative mx-auto">
                         <div className="relative w-full flex justify-center">
                             <Image
-                                src={data.products.nodes[0].images.nodes[0]?.url}
+                                src={data.products.nodes[0].images.nodes[1]?.url}
                                 aspectRatio="4/5"
-                                className="max-w-[80%] h-auto object-contain"
+                                className="max-w-[75%] h-auto object-contain"
                             />
 
-                            <Link to={`/products/${data.products.nodes[0].handle}`} style={{ fontFamily: 'bodoni' }} className="absolute bottom-5 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] !text-white hover:bg-[#503D25] transition">
+                            <Link to={`/products/${data.products.nodes[0].handle}`} style={{ fontFamily: 'bodoni' }} className="absolute bottom-20 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] !text-white hover:bg-[#503D25] transition">
                                 Shop Now
                             </Link>
                         </div>
 
-                        <h2 style={{ fontFamily: "Bodoni" }} className="mt-4 text-2xl font-bold text-center text-black">
+                        <h2 style={{ fontFamily: "Bodoni", paddingTop: '2rem' }} className="mt-4 text-2xl font-bold text-center text-black">
                             {data.products.nodes[0].title}
                         </h2>
 
@@ -144,11 +144,11 @@ export default function Homepage() {
                             {data.products.nodes[0].title}
                         </p>
                     </div>
-                    <div className="w-1/2 flex justify-center items-center p-4" style={{ color: 'white' }}>
+                    <div className="w-1/2 flex items-center" style={{ color: 'white' }}>
                         <Image
                             src={data.products.nodes[0].images.nodes[9]?.url}
                             aspectRatio="4/5"
-                            className="max-w-[90%] h-auto object-contain"
+                            className="w-full h-auto object-contain"
                         />
                     </div>
                 </div>
