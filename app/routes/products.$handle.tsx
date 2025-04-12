@@ -152,7 +152,7 @@ function CartDrawer({ description}: CartDrawerProps) {
       <div className="max-w-7xl mx-auto py-3">
         {[
           {
-            title: 'Description',
+            title: 'Description'.toLocaleUpperCase(),
             content: (
               <div className="space-y-2">
                 {description}
@@ -160,7 +160,7 @@ function CartDrawer({ description}: CartDrawerProps) {
             ),
           },
           {
-            title: 'Delivery Estimate',
+            title: 'Delivery Estimate'.toLocaleUpperCase(),
             content: (
               <div className="space-y-2">
                 <p>Denmark: 1-2 Business Days</p>
@@ -169,7 +169,7 @@ function CartDrawer({ description}: CartDrawerProps) {
             ),
           },
           {
-            title: 'Returns',
+            title: 'Returns'.toLocaleUpperCase(),
             content: (
               <div className="space-y-2">
                 <p>Denmark: 1-2 Business Days</p>
@@ -178,7 +178,7 @@ function CartDrawer({ description}: CartDrawerProps) {
             ),
           },
           {
-            title: 'Contact Us',
+            title: 'Contact Us'.toLocaleUpperCase(),
             content: 'Feel free to contact us at contact@puzo.com',
           },
         ].map(({ title, content }) => (
