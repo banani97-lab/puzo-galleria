@@ -11,14 +11,14 @@ export function HydrateFallback() {
 export default function AboutUsPage() {
   return (
     <div className="max-w-4xl mx-auto p-8">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl mb-6" style={{ fontFamily: 'Bodoni, serif' }}>About PUZO</h1>
-        <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Bodoni, serif' }}>
+      <div className=" mb-12">
+        <h1 className="text-4xl mb-6 font-bold" style={{ fontFamily: 'Bodoni, serif' }}>About PUZO</h1>
+        <p className="text-lg max-w-3xl mx-auto" style={{ fontFamily: 'Bodoni, serif' }}>
           PUZO is a luxury brand that redefines elegance through timeless design and exceptional craftsmanship.
         </p>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-8 max-w-3xl mx-auto">
         <section>
           <h2 className="text-2xl mb-4" style={{ fontFamily: 'Bodoni, serif' }}>Our Story</h2>
           <p className="text-lg" style={{ fontFamily: 'Bodoni, serif' }}>
