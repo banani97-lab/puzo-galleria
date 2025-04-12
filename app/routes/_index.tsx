@@ -76,7 +76,7 @@ export default function Homepage() {
                     <Image
                         src={data.products.nodes[0].images.nodes[8]?.url}
                         aspectRatio="4/5"
-                        className="w-full h-auto object-contain"
+                        className="w-[full] h-auto object-contain"
                     />
                 </div>
                 <div className="w-2/5 flex flex-col justify-center items-center text-white relative mx-auto">
