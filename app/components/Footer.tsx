@@ -17,39 +17,39 @@ export function Footer({
     <Suspense>
       <Await resolve={footerPromise}>
         {(footer) => (
-          <footer className="bg-white py-12 font-['Bodoni']">
-            <div className="container mx-auto px-4">
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <footer className="bg-white py-12 font-['Bodoni'] w-full">
+            <div className="max-w-[2000px] mx-auto px-8">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-16 justify-between">
                 {/* Logo and Brand Name Section */}
                 <div className="flex flex-col items-center">
-                  <h2 className="text-[#62492C] text-2xl font-bold text-center">PUZO</h2>
+                  <h2 className="text-[#62492C] text-xl font-bold text-center">PUZO</h2>
+                  <a href="mailto:support@puzo.com" className="text-[#62492C] hover:opacity-80 text-sm">support@puzo.com</a>
                 </div>
 
                 {/* BRAND Section */}
                 <div>
-                  <h3 className="text-[#62492C] font-bold mb-4">BRAND</h3>
+                  <h3 className="text-[#62492C] font-bold mb-4 text-sm">BRAND</h3>
                   <div className="flex flex-col space-y-2">
-                    <a href="/about-us" className="text-[#62492C] hover:opacity-80">About us</a>
-                    <a href="mailto:support@puzo.com" className="text-[#62492C] hover:opacity-80">support@puzo.com</a>
+                    <a href="/about-us" className="text-[#62492C] hover:opacity-80 text-sm">About us</a>
                   </div>
                 </div>
 
                 {/* BORING STUFF Section */}
                 <div>
-                  <h3 className="text-[#62492C] font-bold mb-4">BORING STUFF</h3>
+                  <h3 className="text-[#62492C] font-bold mb-4 text-sm">BORING STUFF</h3>
                   <div className="flex flex-col space-y-2">
-                    <a href="/terms" className="text-[#62492C] hover:opacity-80">Terms & Conditions</a>
-                    <a href="/privacy" className="text-[#62492C] hover:opacity-80">Privacy Policy</a>
+                    <a href="/terms" className="text-[#62492C] hover:opacity-80 text-sm">Terms & Conditions</a>
+                    <a href="/privacy" className="text-[#62492C] hover:opacity-80 text-sm">Privacy Policy</a>
                   </div>
                 </div>
 
                 {/* SUPPORT Section */}
                 <div>
-                  <h3 className="text-[#62492C] font-bold mb-4">SUPPORT</h3>
+                  <h3 className="text-[#62492C] font-bold mb-4 text-sm">SUPPORT</h3>
                   <div className="flex flex-col space-y-2">
-                    <a href="/returns" className="text-[#62492C] hover:opacity-80">Returns</a>
-                    <a href="/faq" className="text-[#62492C] hover:opacity-80">FAQ</a>
-                    <a href="/contact" className="text-[#62492C] hover:opacity-80">Contact</a>
+                    <a href="/returns" className="text-[#62492C] hover:opacity-80 text-sm">Returns</a>
+                    <a href="/faq" className="text-[#62492C] hover:opacity-80 text-sm">FAQ</a>
+                    <a href="/contact" className="text-[#62492C] hover:opacity-80 text-sm">Contact</a>
                   </div>
                 </div>
 
