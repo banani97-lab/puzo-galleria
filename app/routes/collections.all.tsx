@@ -98,7 +98,7 @@ function ProductItem({
           aspectRatio="1/1"
           data={imageToShow!}
           loading={loading}
-          sizes="(min-width: 45em) 400px, 100vw"
+          sizes="(min-width: 45em) 200px, 100vw"
         />
       <h4 style={{ fontFamily: 'Bodoni'}}>{product.title}</h4>
       <small style={{ fontFamily: 'Bodoni'}}>

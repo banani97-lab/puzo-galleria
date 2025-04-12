@@ -46,7 +46,7 @@ export default function Collections() {
   const {collections} = useLoaderData<typeof loader>();
 
   return (
-    <div className="collections">
+    <div className="collections pb-50">
       <h1>Collections</h1>
       <PaginatedResourceSection
         connection={collections}
@@ -81,10 +81,10 @@ function CollectionItem({
       {collection?.image && (
         <Image
           alt={collection.image.altText || collection.title}
-          aspectRatio="1/1"
+          aspectRatio="4/5"
           data={collection.image}
           loading={index < 3 ? 'eager' : undefined}
-          sizes="(min-width: 45em) 400px, 100vw"
+          sizes="(min-width: 45em) 300px, 100vw"
         />
       )}
       <h5>{collection.title}</h5>

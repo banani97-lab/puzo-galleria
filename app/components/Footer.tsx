@@ -20,13 +20,8 @@ export function Footer({
           <footer className="bg-white py-12 font-['Bodoni']">
             <div className="container mx-auto px-4">
               <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-                {/* Logo Section */}
+                {/* Logo and Brand Name Section */}
                 <div className="flex flex-col items-center">
-                  <img 
-                    src="/assets/logo.png" 
-                    alt="PUZO Logo" 
-                    className="w-32 h-32 mb-4"
-                  />
                   <h2 className="text-[#62492C] text-2xl font-bold text-center">PUZO</h2>
                 </div>
 
@@ -58,23 +53,13 @@ export function Footer({
                   </div>
                 </div>
 
-                {/* JOIN Section */}
-                <div>
-                  <h3 className="text-[#62492C] font-bold mb-4">JOIN</h3>
-                  <p className="text-[#62492C] mb-4">SIGN UP TO OUR EMAIL LIST</p>
-                  <form className="flex">
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      className="flex-1 border border-[#62492C] px-3 py-2 mr-2"
-                    />
-                    <button
-                      type="submit"
-                      className="bg-[#62492C] text-white px-6 py-2 hover:opacity-90"
-                    >
-                      JOIN
-                    </button>
-                  </form>
+                {/* Logo Section */}
+                <div className="flex flex-col items-center">
+                  <img 
+                    src="/assets/logo.png" 
+                    alt="PUZO Logo" 
+                    className="w-32 h-32"
+                  />
                 </div>
               </div>
             </div>
