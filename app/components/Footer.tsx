@@ -58,7 +58,7 @@ export function Footer({
                   <img 
                     src="/assets/logo.png" 
                     alt="PUZO Logo" 
-                    className="w-24 h-24"
+                    className="w-16 h-16"
                   />
                 </div>
               </div>
