@@ -17,9 +17,9 @@ export function Footer({
     <Suspense>
       <Await resolve={footerPromise}>
         {(footer) => (
-          <footer className="bg-white py-12 font-['Bodoni'] w-full border-t-2 border-[#62492C]">
-            <div className="max-w-[2000px] mx-auto px-8">
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-16 justify-between">
+          <footer className="bg-white py-16 font-['Bodoni'] w-full border-t-1 border-[#62492C]">
+            <div className="max-w-[2000px] mx-auto px-12">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-20 justify-between">
                 {/* Logo and Brand Name Section */}
                 <div className="flex flex-col items-center">
                   <h2 className="text-[#62492C] text-xl font-bold text-center">PUZO</h2>
@@ -58,7 +58,7 @@ export function Footer({
                   <img 
                     src="/assets/logo.png" 
                     alt="PUZO Logo" 
-                    className="w-32 h-32"
+                    className="w-24 h-24"
                   />
                 </div>
               </div>
