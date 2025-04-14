@@ -17,7 +17,7 @@ export function Footer({
     <Suspense>
       <Await resolve={footerPromise}>
         {(footer) => (
-          <footer className="bg-white py-12 font-['Bodoni'] w-full">
+          <footer className="bg-white py-12 font-['Bodoni'] w-full border-t-2 border-[#62492C]">
             <div className="max-w-[2000px] mx-auto px-8">
               <div className="grid grid-cols-1 md:grid-cols-5 gap-16 justify-between">
                 {/* Logo and Brand Name Section */}

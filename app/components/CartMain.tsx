@@ -96,7 +96,7 @@ function CartDrawer() {
       <div className="max-w-7xl mx-auto px-4 py-3">
         {[
           {
-            title: 'Delivery Estimate',
+            title: 'Delivery Estimate'.toUpperCase(),
             content: (
               <div className="space-y-2">
                 <p>Denmark: 1-2 Business Days</p>
@@ -105,7 +105,7 @@ function CartDrawer() {
             ),
           },
           {
-            title: 'Returns',
+            title: 'Returns'.toUpperCase(),
             content: (
               <div className="space-y-2">
                 <p>Denmark: 1-2 Business Days</p>
@@ -114,7 +114,7 @@ function CartDrawer() {
             ),
           },
           {
-            title: 'Contact Us',
+            title: 'Contact Us'.toUpperCase(),
             content: 'Feel free to contact us at contact@puzo.com',
           },
         ].map(({ title, content }) => (

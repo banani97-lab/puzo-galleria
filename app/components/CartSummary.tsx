@@ -23,11 +23,15 @@ function CartCheckoutActions({checkoutUrl}: {checkoutUrl?: string}) {
   if (!checkoutUrl) return null;
 
   return (
-    <div>
-      <a href={checkoutUrl} target="_self">
-        <p>Continue to Checkout &rarr;</p>
+    <div className="w-full">
+      <a 
+        href={checkoutUrl} 
+        target="_self"
+        className="w-full block text-center py-3 px-6 bg-[#62492C] transition-colors"
+        style={{ fontFamily: 'Bodoni, serif', color: 'white' }}
+      >
+        Buy Now
       </a>
-      <br />
     </div>
   );
 }

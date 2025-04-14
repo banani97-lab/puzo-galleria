@@ -402,6 +402,10 @@ button.reset:hover:not(:has(> *)) {
   margin-bottom: 2rem;
 }
 
+.product-item {
+  padding-left: 3rem;
+}
+
 .product-item img {
   height: auto;
   width: 100%;

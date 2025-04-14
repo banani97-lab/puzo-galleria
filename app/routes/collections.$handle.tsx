@@ -125,7 +125,7 @@ function ProductItem({
           sizes="(min-width: 45em) 300px, 100vw"
         />
       )}
-      <h4>{product.title}</h4>
+      <h4 className='pl-3'>{product.title}</h4>
       <small>
         <Money data={product.priceRange.minVariantPrice} />
       </small>
