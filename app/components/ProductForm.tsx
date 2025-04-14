@@ -140,7 +140,7 @@ export function ProductForm({
                 : []
             }
           >
-            {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
+            {selectedVariant?.availableForSale ? 'ADD TO CART' : 'SOLD OUT'}
           </AddToCartButton>
         </div>
         {selectedVariant?.availableForSale && (
@@ -159,7 +159,7 @@ export function ProductForm({
                 transition: 'all 0.3s ease-in-out',
               }}
             >
-              Buy Now
+              BUY NOW
             </button>
           </div>
         )}
