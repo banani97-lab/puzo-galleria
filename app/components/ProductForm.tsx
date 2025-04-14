@@ -18,6 +18,18 @@ export function ProductForm({
 }) {
   const navigate = useNavigate();
   const {open} = useAside();
+
+  const handleBuyNow = () => {
+    if (selectedVariant?.id) {
+      // Extract the numeric ID from the gid
+      const variantId = selectedVariant.id.split('/').pop();
+      if (variantId) {
+        // Navigate to the cart route with the variant ID and quantity
+        navigate(`/cart/${variantId}:1`);
+      }
+    }
+  };
+
   return (
     <div className="product-form">
       {productOptions.map((option) => {
@@ -104,25 +116,54 @@ export function ProductForm({
           </div>
         );
       })}
-      <AddToCartButton
-        disabled={!selectedVariant || !selectedVariant.availableForSale}
-        onClick={() => {
-          open('cart');
-        }}
-        lines={
-          selectedVariant
-            ? [
-                {
-                  merchandiseId: selectedVariant.id,
-                  quantity: 1,
-                  selectedVariant,
-                },
-              ]
-            : []
-        }
-      >
-        {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
-      </AddToCartButton>
+      <div style={{ 
+        display: 'flex', 
+        gap: '10px',
+        width: '67%', // Reduce from 90% to 85%
+        marginRight: 'auto'
+      }}>
+        <div style={{ flex: 1 }}>
+          <AddToCartButton
+            disabled={!selectedVariant || !selectedVariant.availableForSale}
+            onClick={() => {
+              open('cart');
+            }}
+            lines={
+              selectedVariant
+                ? [
+                    {
+                      merchandiseId: selectedVariant.id,
+                      quantity: 1,
+                      selectedVariant,
+                    },
+                  ]
+                : []
+            }
+          >
+            {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
+          </AddToCartButton>
+        </div>
+        {selectedVariant?.availableForSale && (
+          <div style={{ flex: 1 }}>
+            <button
+              onClick={handleBuyNow}
+              style={{
+                width: '100%',
+                fontFamily: 'Bodoni',
+                border: '1px solid #62492C',
+                padding: '10px 20px',
+                backgroundColor: '#62492C',
+                color: 'white',
+                cursor: 'pointer',
+                fontSize: '1rem',
+                transition: 'all 0.3s ease-in-out',
+              }}
+            >
+              Buy Now
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
