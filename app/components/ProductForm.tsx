@@ -119,7 +119,7 @@ export function ProductForm({
       <div style={{ 
         display: 'flex', 
         gap: '10px',
-        width: '67%', // Reduce from 90% to 85%
+        width: '75%', // Reduce from 90% to 85%
         marginRight: 'auto'
       }}>
         <div style={{ flex: 1 }}>

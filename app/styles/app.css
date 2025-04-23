@@ -1,5 +1,6 @@
 :root {
   --aside-width: 500px;
+  --aside-width-mobile: 100%;
   --cart-aside-summary-height-with-discount: 300px;
   --cart-aside-summary-height: 250px;
   --grid-item-width: 355px;
@@ -40,6 +41,17 @@ aside {
   right: calc(-1 * var(--aside-width));
   top: 0;
   transition: transform 200ms ease-in-out;
+  width: var(--aside-width);
+  z-index: 20;
+}
+
+@media (max-width: 768px) {
+  aside {
+    max-width: var(--aside-width-mobile);
+    min-width: var(--aside-width-mobile);
+    right: calc(-1 * var(--aside-width-mobile));
+    width: var(--aside-width-mobile);
+  }
 }
 
 aside header {
@@ -53,14 +65,20 @@ aside header {
 
 aside header h3 {
   margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 aside header .close {
-  font-weight: bold;
+  background: none;
+  border: none;
+  color: var(--color-dark);
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+  padding: 0;
   opacity: 0.8;
-  text-decoration: none;
-  transition: all 200ms;
-  width: 20px;
+  transition: opacity 200ms;
 }
 
 aside header .close:hover {
@@ -98,7 +116,6 @@ aside li {
   right: 0;
   top: 0;
   transition: opacity 400ms ease-in-out;
-  transition: opacity 400ms;
   visibility: hidden;
   z-index: 10;
 }
@@ -112,6 +129,12 @@ aside li {
   position: absolute;
   top: 0;
   width: calc(100% - var(--aside-width));
+}
+
+@media (max-width: 768px) {
+  .overlay .close-outside {
+    width: 0;
+  }
 }
 
 .overlay .light {
@@ -133,6 +156,12 @@ aside li {
 /* reveal aside */
 .overlay.expanded aside {
   transform: translateX(calc(var(--aside-width) * -1));
+}
+
+@media (max-width: 768px) {
+  .overlay.expanded aside {
+    transform: translateX(calc(var(--aside-width-mobile) * -1));
+  }
 }
 
 button.reset {
@@ -263,6 +292,12 @@ button.reset:hover:not(:has(> *)) {
   width: calc(var(--aside-width) - 40px);
 }
 
+@media (max-width: 768px) {
+  .cart-summary-aside {
+    width: calc(var(--aside-width-mobile) - 40px);
+  }
+}
+
 .cart-line-quantity {
   display: flex;
 }
@@ -342,7 +377,7 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .featured-collection-image {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 5;
   @media (min-width: 45em) {
     aspect-ratio: 16 / 9;
   }
@@ -435,7 +470,6 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .product-main {
-  align-self: start;
   position: sticky;
   top: 6rem;
 }
@@ -453,6 +487,8 @@ button.reset:hover:not(:has(> *)) {
   display: flex;
   flex-wrap: wrap;
   grid-gap: 0.75rem;
+  width: 75%;
+  margin-right: auto;
 }
 
 .product-options-item,
@@ -467,10 +503,16 @@ button.reset:hover:not(:has(> *)) {
   width: 1.25rem;
   height: 1.25rem;
   margin: 0.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .product-option-label-swatch img {
   width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /*

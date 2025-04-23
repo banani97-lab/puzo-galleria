@@ -52,10 +52,10 @@ export default function Collection() {
   const {products} = useLoaderData<typeof loader>();
 
   return (
-    <div className="collection flex pt-10 pl-3 pb-25">
+    <div className="collection px-4 md:px-6 pt-6 md:pt-10 pb-16 md:pb-25">
       <PaginatedResourceSection
         connection={products}
-        resourcesClassName="products-grid"
+        resourcesClassName="products-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
       >
         {({node: product, index}) => (
           <ProductItem
@@ -86,7 +86,7 @@ function ProductItem({
 
   return (
     <Link
-      className="product-item"
+      className="product-item flex flex-col gap-2"
       key={product.id}
       prefetch="intent"
       to={variantUrl}
@@ -95,13 +95,14 @@ function ProductItem({
     >
         <Image
           alt={imageToShow!.altText || product.title}
-          aspectRatio="1/1"
+          aspectRatio="4/5"
           data={imageToShow!}
           loading={loading}
           sizes="(min-width: 45em) 200px, 100vw"
+          className="w-full h-auto"
         />
-      <h4 style={{ fontFamily: 'Bodoni'}}>{product.title}</h4>
-      <small style={{ fontFamily: 'Bodoni'}}>
+      <h4 className="text-sm md:text-base" style={{ fontFamily: 'Bodoni'}}>{product.title}</h4>
+      <small className="text-xs md:text-sm" style={{ fontFamily: 'Bodoni'}}>
         <Money data={product.priceRange.minVariantPrice} />
       </small>
     </Link>

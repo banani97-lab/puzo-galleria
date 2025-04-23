@@ -71,15 +71,17 @@ export default function Homepage() {
                     Your browser doesn't support video
                 </video>
             </div>
-            <div className="w-full flex pt-3">
-                <div className="w-1/2 flex items-center" style={{ color: 'white' }}>
-                    <Image
-                        src={data.products.nodes[0].images.nodes[8]?.url}
-                        aspectRatio="4/5"
-                        className="w-[full] h-auto object-contain"
-                    />
+            <div className="w-full flex flex-col md:flex-row pt-3">
+                <div className="w-full md:w-1/2 flex items-center justify-center" style={{ color: 'white' }}>
+                    <div className="w-full max-w-[500px] max-h-[500px] mx-auto px-4">
+                        <Image
+                            src={data.products.nodes[0].images.nodes[8]?.url}
+                            aspectRatio="4/5"
+                            className="w-full h-auto object-contain"
+                        />
+                    </div>
                 </div>
-                <div className="w-2/5 flex flex-col justify-center items-center text-white relative mx-auto">
+                <div className="w-full md:w-2/5 flex flex-col justify-center items-center text-white relative mx-auto mt-6 md:mt-0">
                     <div className="relative w-full flex justify-center">
                         <Image
                             src={data.products.nodes[0].images.nodes[0]?.url}
@@ -87,16 +89,16 @@ export default function Homepage() {
                             className="max-w-[75%] h-auto object-contain"
                         />
 
-                        <Link to={`/products/${data.products.nodes[0].handle}`} style={{ fontFamily: 'bodoni' }} className="absolute bottom-20 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] !text-white hover:bg-[#503D25] transition">
+                        <Link to={`/products/${data.products.nodes[0].handle}`} style={{ fontFamily: 'bodoni' }} className="absolute bottom-10 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] !text-white hover:bg-[#503D25] transition">
                             Shop Now
                         </Link>
                     </div>
 
-                    <h2 style={{ fontFamily: "Bodoni", paddingTop: '2rem' }} className="mt-4 text-2xl font-bold text-center text-black">
+                    <h2 style={{ fontFamily: "Bodoni" }} className="mt-4 text-xl md:text-2xl font-bold text-center text-black">
                         {data.products.nodes[0].title}
                     </h2>
 
-                    <p style={{ fontFamily: "Bodoni" }} className="mt-2 text-lg text-black text-center bodoni">
+                    <p style={{ fontFamily: "Bodoni" }} className="mt-2 text-base md:text-lg text-black text-center">
                         {data.products.nodes[0].title}
                     </p>
                 </div>
@@ -105,25 +107,25 @@ export default function Homepage() {
                 <div className='w-1/6 p-1 m-1'>
                     <Image src={data.products.nodes[0].images.nodes[4]?.url} aspectRatio="4/5" />
                 </div>
-                <div className='w-1/6 p-1 m-1 '>
+                <div className='w-1/6 p-1 m-1'>
                     <Image src={data.products.nodes[0].images.nodes[6]?.url} aspectRatio="4/5" />
                 </div>
-                <div className='w-1/6 p-1 m-1 '>
+                <div className='w-1/6 p-1 m-1'>
                     <Image src={data.products.nodes[0].images.nodes[7]?.url} aspectRatio="4/5" />
                 </div>
-                <div className='w-1/6 p-1 m-1 '>
+                <div className='w-1/6 p-1 m-1'>
                     <Image src={data.products.nodes[0].images.nodes[5]?.url} aspectRatio="4/5" />
                 </div>
-                <div className='w-1/6 p-1 m-1 '>
+                <div className='w-1/6 p-1 m-1'>
                     <Image src={data.products.nodes[0].images.nodes[3]?.url} aspectRatio="4/5" />
                 </div>
-                <div className='w-1/6 p-1 m-1 '>
+                <div className='w-1/6 p-1 m-1'>
                     <Image src={data.products.nodes[0].images.nodes[2]?.url} aspectRatio="4/5" />
                 </div>
             </div>
             <div className='w-full flex pt-4'>
-                <div className="w-full flex pt-3">
-                    <div className="w-2/5 flex flex-col justify-center items-center text-white relative mx-auto">
+                <div className="w-full flex flex-col md:flex-row pt-3">
+                    <div className="w-full md:w-2/5 flex flex-col justify-center items-center text-white relative mx-auto">
                         <div className="relative w-full flex justify-center">
                             <Image
                                 src={data.products.nodes[0].images.nodes[1]?.url}
@@ -136,20 +138,22 @@ export default function Homepage() {
                             </Link>
                         </div>
 
-                        <h2 style={{ fontFamily: "Bodoni", paddingTop: '2rem' }} className="mt-4 text-2xl font-bold text-center text-black">
+                        <h2 style={{ fontFamily: "Bodoni" }} className="mt-4 text-xl md:text-2xl font-bold text-center text-black">
                             {data.products.nodes[0].title}
                         </h2>
 
-                        <p style={{ fontFamily: "Bodoni" }} className="mt-2 text-lg text-black text-center bodoni">
+                        <p style={{ fontFamily: "Bodoni" }} className="mt-2 text-base md:text-lg text-black text-center">
                             {data.products.nodes[0].title}
                         </p>
                     </div>
-                    <div className="w-1/2 flex items-center" style={{ color: 'white' }}>
-                        <Image
-                            src={data.products.nodes[0].images.nodes[9]?.url}
-                            aspectRatio="4/5"
-                            className="w-full h-auto object-contain"
-                        />
+                    <div className="w-full md:w-1/2 flex items-center justify-center mt-6 md:mt-0" style={{ color: 'white' }}>
+                        <div className="w-full max-w-[500px] max-h-[500px] mx-auto px-4">
+                            <Image
+                                src={data.products.nodes[0].images.nodes[9]?.url}
+                                aspectRatio="4/5"
+                                className="w-full h-auto object-contain"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -200,7 +204,7 @@ function RecommendedProducts({
                                     >
                                         <Image
                                             data={product.images.nodes[0]}
-                                            aspectRatio="1/1"
+                                            aspectRatio="4/5"
                                             sizes="(min-width: 45em) 20vw, 50vw"
                                         />
                                         <h4>{product.title}</h4>

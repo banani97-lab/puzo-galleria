@@ -7,9 +7,9 @@ import {
   getProductOptions,
   getAdjacentAndFirstAvailableVariants,
   useSelectedOptionInUrlParam,
+  Image,
 } from '@shopify/hydrogen';
 import {ProductPrice} from '~/components/ProductPrice';
-import {ProductImage} from '~/components/ProductImage';
 import {ProductForm} from '~/components/ProductForm';
 import { useState } from 'react';
 
@@ -79,7 +79,7 @@ function loadDeferredData({context, params}: LoaderFunctionArgs) {
 
 export default function Product() {
   const {product} = useLoaderData<typeof loader>();
-
+  console.log(product);
   // Optimistically selects a variant with given available variant information
   const selectedVariant = useOptimisticVariant(
     product.selectedOrFirstAvailableVariant,
@@ -96,13 +96,27 @@ export default function Product() {
     selectedOrFirstAvailableVariant: selectedVariant,
   });
 
-  const {title, descriptionHtml} = product;
+  const {title, descriptionHtml, images} = product;
 
   return (
-    <div className="product">
-      <ProductImage image={selectedVariant?.image} />
-      <div style={{ fontFamily: 'Bodoni'}} className="product-main">
-        <h1>{title}</h1>
+    <div className="product flex flex-col md:flex-row">
+      <div className="w-full md:w-2/3 px-4">
+        <div className="h-[400px] md:h-[600px] overflow-y-auto space-y-4">
+          {images.nodes.map((image: any) => (
+            <div key={image?.id} className="w-full">
+              <Image 
+                src={image?.url} 
+                alt={image?.altText} 
+                width={image?.width}
+                height={image?.height}
+                className="w-full h-auto"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style={{ fontFamily: 'Bodoni'}} className="product-main justify-start px-4 md:pr-8 mt-8 md:mt-0">
+        <h1 className="text-2xl md:text-3xl">{title}</h1>
         <ProductPrice
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}
@@ -259,6 +273,13 @@ const PRODUCT_FRAGMENT = `#graphql
     description
     encodedVariantExistence
     encodedVariantAvailability
+    images(first: 20) {
+      nodes {
+        id
+        url
+        altText
+      }
+    }
     options {
       name
       optionValues {

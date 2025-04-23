@@ -119,7 +119,7 @@ function ProductItem({
       {product.featuredImage && (
         <Image
           alt={product.featuredImage.altText || product.title}
-          aspectRatio="1/1"
+          aspectRatio="4/5"
           data={product.featuredImage}
           loading={loading}
           sizes="(min-width: 45em) 300px, 100vw"

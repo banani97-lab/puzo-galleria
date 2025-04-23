@@ -60,6 +60,12 @@ export function Aside({
     >
       <button className="close-outside" onClick={close} />
       <aside> 
+        <header>
+          <h3>{heading}</h3>
+          <button className="close" onClick={close}>
+            <span>×</span>
+          </button>
+        </header>
         <main>{children}</main>
       </aside>
     </div>
