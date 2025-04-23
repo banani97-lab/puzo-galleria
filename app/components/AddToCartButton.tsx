@@ -1,5 +1,6 @@
 import {type FetcherWithComponents} from '@remix-run/react';
 import {CartForm, type OptimisticCartLineInput} from '@shopify/hydrogen';
+import styles from './AddToCartButton.module.css';
 
 export function AddToCartButton({
   analytics,
@@ -25,16 +26,7 @@ export function AddToCartButton({
           />
           <button
             type="submit"
-            style={{
-              width: '100%',
-              fontFamily: 'Bodoni',
-              border: '1px solid black', // Black rectangular border
-              padding: '10px 20px', // Adjust padding for better appearance
-              backgroundColor: 'transparent', // Keep background neutral
-              cursor: 'pointer', // Change cursor on hover
-              fontSize: '1rem', // Optional: Adjust font size
-              transition: 'all 0.3s ease-in-out', // Smooth hover effect
-            }}
+            className={styles.button}
             onClick={onClick}
             disabled={disabled ?? fetcher.state !== 'idle'}
           >

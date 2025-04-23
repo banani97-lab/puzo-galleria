@@ -1,0 +1,28 @@
+.button {
+  width: 100%;
+  font-family: Bodoni;
+  border: 1px solid black;
+  padding: 10px 20px;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.3s ease-in-out;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .button {
+    padding: 12px 24px;
+    font-size: 1.125rem;
+  }
+} 
