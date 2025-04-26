@@ -63,17 +63,17 @@ function loadDeferredData({ context }: LoaderFunctionArgs) {
 export default function Homepage() {
     const data = useLoaderData<typeof loader>();
     return (
-        <div className="home">
-            <div>
+        <div className="home space-y-8">
+            <div className="w-full">
                 <video className='w-full' controls>
                     <source src={data.video?.sources[0].url} type='video/mp4' />
                     {/* <source src={data.video?.sources[1].url} type='application/x-mpegURL' /> */}
                     Your browser doesn't support video
                 </video>
             </div>
-            <div className="w-full flex flex-col md:flex-row pt-3">
-                <div className="w-full md:w-1/2 flex items-center justify-center" style={{ color: 'white' }}>
-                    <div className="w-full max-w-[500px] max-h-[500px] mx-auto px-4">
+            <div className="w-full flex flex-col md:flex-row gap-8">
+                <div className="w-full md:w-1/2 flex items-center justify-center">
+                    <div className="w-full max-w-[500px]">
                         <Image
                             src={data.products.nodes[0].images.nodes[8]?.url}
                             aspectRatio="4/5"
@@ -81,79 +81,70 @@ export default function Homepage() {
                         />
                     </div>
                 </div>
-                <div className="w-full md:w-2/5 flex flex-col justify-center items-center text-white relative mx-auto mt-6 md:mt-0">
-                    <div className="relative w-full flex justify-center">
+                <div className="w-full md:w-1/2 flex flex-col justify-center items-center text-white relative">
+                    <div className="relative w-full max-w-[400px]">
                         <Image
                             src={data.products.nodes[0].images.nodes[0]?.url}
                             aspectRatio="4/5"
-                            className="max-w-[75%] h-auto object-contain"
+                            className="w-full h-auto object-contain"
                         />
-
-                        <Link to={`/products/${data.products.nodes[0].handle}`} style={{ fontFamily: 'bodoni' }} className="absolute bottom-10 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] !text-white hover:bg-[#503D25] transition">
+                        <Link 
+                            to={`/products/${data.products.nodes[0].handle}`} 
+                            style={{ fontFamily: 'bodoni', color: 'white' }} 
+                            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] text-white hover:bg-[#503D25] transition"
+                        >
                             Shop Now
                         </Link>
                     </div>
-
                     <h2 style={{ fontFamily: "Bodoni" }} className="mt-4 text-xl md:text-2xl font-bold text-center text-black">
                         {data.products.nodes[0].title}
                     </h2>
-
                     <p style={{ fontFamily: "Bodoni" }} className="mt-2 text-base md:text-lg text-black text-center">
                         {data.products.nodes[0].title}
                     </p>
                 </div>
             </div>
-            <div className='w-full hidden md:flex pt-4'>
-                <div className='w-1/6 p-1 m-1'>
-                    <Image src={data.products.nodes[0].images.nodes[4]?.url} aspectRatio="4/5" />
-                </div>
-                <div className='w-1/6 p-1 m-1'>
-                    <Image src={data.products.nodes[0].images.nodes[6]?.url} aspectRatio="4/5" />
-                </div>
-                <div className='w-1/6 p-1 m-1'>
-                    <Image src={data.products.nodes[0].images.nodes[7]?.url} aspectRatio="4/5" />
-                </div>
-                <div className='w-1/6 p-1 m-1'>
-                    <Image src={data.products.nodes[0].images.nodes[5]?.url} aspectRatio="4/5" />
-                </div>
-                <div className='w-1/6 p-1 m-1'>
-                    <Image src={data.products.nodes[0].images.nodes[3]?.url} aspectRatio="4/5" />
-                </div>
-                <div className='w-1/6 p-1 m-1'>
-                    <Image src={data.products.nodes[0].images.nodes[2]?.url} aspectRatio="4/5" />
-                </div>
-            </div>
-            <div className='w-full flex pt-4'>
-                <div className="w-full flex flex-col md:flex-row pt-3">
-                    <div className="w-full md:w-2/5 flex flex-col justify-center items-center text-white relative mx-auto">
-                        <div className="relative w-full flex justify-center">
-                            <Image
-                                src={data.products.nodes[0].images.nodes[1]?.url}
-                                aspectRatio="4/5"
-                                className="max-w-[75%] h-auto object-contain"
-                            />
-
-                            <Link to={`/products/${data.products.nodes[0].handle}`} style={{ fontFamily: 'bodoni' }} className="absolute bottom-20 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] !text-white hover:bg-[#503D25] transition">
-                                Shop Now
-                            </Link>
-                        </div>
-
-                        <h2 style={{ fontFamily: "Bodoni" }} className="mt-4 text-xl md:text-2xl font-bold text-center text-black">
-                            {data.products.nodes[0].title}
-                        </h2>
-
-                        <p style={{ fontFamily: "Bodoni" }} className="mt-2 text-base md:text-lg text-black text-center">
-                            {data.products.nodes[0].title}
-                        </p>
+            <div className='w-full hidden md:grid grid-cols-6 gap-4'>
+                {[4, 6, 7, 5, 3, 2].map((index) => (
+                    <div key={index} className='w-full'>
+                        <Image 
+                            src={data.products.nodes[0].images.nodes[index]?.url} 
+                            aspectRatio="4/5" 
+                            className="w-full h-auto object-cover"
+                        />
                     </div>
-                    <div className="w-full md:w-1/2 flex items-center justify-center mt-6 md:mt-0" style={{ color: 'white' }}>
-                        <div className="w-full max-w-[500px] max-h-[500px] mx-auto px-4">
-                            <Image
-                                src={data.products.nodes[0].images.nodes[9]?.url}
-                                aspectRatio="4/5"
-                                className="w-full h-auto object-contain"
-                            />
-                        </div>
+                ))}
+            </div>
+            <div className='w-full flex flex-col md:flex-row gap-8'>
+                <div className="w-full md:w-1/2 flex flex-col justify-center items-center text-white relative order-2 md:order-1">
+                    <div className="relative w-full max-w-[400px]">
+                        <Image
+                            src={data.products.nodes[0].images.nodes[1]?.url}
+                            aspectRatio="4/5"
+                            className="w-full h-auto object-contain"
+                        />
+                        <Link 
+                            to={`/products/${data.products.nodes[0].handle}`} 
+                            style={{ fontFamily: 'bodoni', color: 'white' }} 
+                            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 px-6 py-2 font-semibold rounded-md shadow-md bg-[#62492C] text-white hover:bg-[#503D25] transition"
+                        >
+                            Shop Now
+                        </Link>
+                    </div>
+                    <h2 style={{ fontFamily: "Bodoni" }} className="mt-4 text-xl md:text-2xl font-bold text-center text-black">
+                        {data.products.nodes[0].title}
+                    </h2>
+                    <p style={{ fontFamily: "Bodoni" }} className="mt-2 text-base md:text-lg text-black text-center">
+                        {data.products.nodes[0].title}
+                    </p>
+                </div>
+                <div className="w-full md:w-1/2 flex items-center justify-center order-1 md:order-2">
+                    <div className="w-full max-w-[500px]">
+                        <Image
+                            src={data.products.nodes[0].images.nodes[9]?.url}
+                            aspectRatio="4/5"
+                            className="w-full h-auto object-contain"
+                        />
                     </div>
                 </div>
             </div>
