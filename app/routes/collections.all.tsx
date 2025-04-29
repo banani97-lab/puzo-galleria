@@ -96,7 +96,7 @@ function ProductItem({
           aspectRatio="4/5"
           data={imageToShow!}
           loading={loading}
-          className="w-full h-auto max-w-[200px] max-h-[250px]"
+          className="w-full h-auto max-w-[300px] max-h-[350px]"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         />

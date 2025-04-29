@@ -63,7 +63,7 @@ function loadDeferredData({ context }: LoaderFunctionArgs) {
 export default function Homepage() {
     const data = useLoaderData<typeof loader>();
     return (
-        <div className="home space-y-8">
+        <div className="home">
             <div className="w-full">
                 <video className='w-full' controls>
                     <source src={data.video?.sources[0].url} type='video/mp4' />
@@ -72,17 +72,17 @@ export default function Homepage() {
                 </video>
             </div>
             <div className="w-full flex flex-col md:flex-row gap-8">
-                <div className="w-full md:w-1/2 flex items-center justify-center">
-                    <div className="w-full max-w-[500px]">
+                <div className="w-full md:w-1/2 flex items-center">
+                    <div className="w-full">
                         <Image
                             src={data.products.nodes[0].images.nodes[8]?.url}
-                            aspectRatio="4/5"
+                            aspectRatio="3/4"
                             className="w-full h-auto object-contain"
                         />
                     </div>
                 </div>
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-center text-white relative">
-                    <div className="relative w-full max-w-[400px]">
+                    <div className="relative w-full max-w-[500px]">
                         <Image
                             src={data.products.nodes[0].images.nodes[0]?.url}
                             aspectRatio="4/5"
@@ -104,7 +104,7 @@ export default function Homepage() {
                     </p>
                 </div>
             </div>
-            <div className='w-full hidden md:grid grid-cols-6 gap-4'>
+            <div className='w-full hidden md:grid grid-cols-6 gap-4 mt-8 mb-8'>
                 {[4, 6, 7, 5, 3, 2].map((index) => (
                     <div key={index} className='w-full'>
                         <Image 
@@ -117,7 +117,7 @@ export default function Homepage() {
             </div>
             <div className='w-full flex flex-col md:flex-row gap-8'>
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-center text-white relative order-2 md:order-1">
-                    <div className="relative w-full max-w-[400px]">
+                    <div className="relative w-full max-w-[500px]">
                         <Image
                             src={data.products.nodes[0].images.nodes[1]?.url}
                             aspectRatio="4/5"
@@ -138,8 +138,8 @@ export default function Homepage() {
                         {data.products.nodes[0].title}
                     </p>
                 </div>
-                <div className="w-full md:w-1/2 flex items-center justify-center order-1 md:order-2">
-                    <div className="w-full max-w-[500px]">
+                <div className="w-full md:w-1/2 flex items-center order-1 md:order-2">
+                    <div className="w-full">
                         <Image
                             src={data.products.nodes[0].images.nodes[9]?.url}
                             aspectRatio="4/5"
