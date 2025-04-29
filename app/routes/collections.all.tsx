@@ -90,16 +90,15 @@ function ProductItem({
       key={product.id}
       prefetch="intent"
       to={variantUrl}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
         <Image
           alt={imageToShow!.altText || product.title}
           aspectRatio="4/5"
           data={imageToShow!}
           loading={loading}
-          sizes="(min-width: 45em) 200px, 100vw"
-          className="w-full h-auto"
+          className="w-full h-auto max-w-[200px] max-h-[250px]"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         />
       <h4 className="text-sm md:text-base" style={{ fontFamily: 'Bodoni'}}>{product.title}</h4>
       <small className="text-xs md:text-sm" style={{ fontFamily: 'Bodoni'}}>
