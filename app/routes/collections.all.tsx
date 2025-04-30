@@ -52,7 +52,7 @@ export default function Collection() {
   const {products} = useLoaderData<typeof loader>();
 
   return (
-    <div className="collection px-4 md:px-6 pt-6 md:pt-10 pb-16 md:pb-25">
+    <div className="collection pl-10 px-10 md:px-8 pt-6 md:pt-10 pb-16 md:pb-25">
       <PaginatedResourceSection
         connection={products}
         resourcesClassName="products-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"

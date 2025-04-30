@@ -114,19 +114,19 @@ export default function Product() {
             </div>
           ))}
         </div>
-        {/* Mobile horizontal slider */}
-        <div className="flex md:hidden overflow-x-auto space-x-4 pb-4" style={{ WebkitOverflowScrolling: 'touch' }}>
-          {images.nodes.map((image: any) => (
-            <div key={image?.id} className="min-w-[80vw] max-w-xs flex-shrink-0">
+        {/* Mobile single image display */}
+        <div className="block md:hidden mt-10">
+          {images.nodes[0] && (
+            <div className="w-full">
               <Image 
-                src={image?.url} 
-                alt={image?.altText} 
-                width={image?.width}
-                height={image?.height}
+                src={images.nodes[0].url || ''} 
+                alt={images.nodes[0].altText || ''} 
+                width={800}
+                height={800}
                 className="w-full h-auto rounded"
               />
             </div>
-          ))}
+          )}
         </div>
       </div>
       <div className="w-full md:w-1/2 product-main">
