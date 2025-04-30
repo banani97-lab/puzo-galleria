@@ -158,32 +158,34 @@ function CartBadge({ count }: { count: number | null }) {
             style={{ 
                 position: 'relative',
                 display: 'block',
-                width: '32px',
-                height: '32px'
+                width: '24px',
+                height: '24px'
             }}
+            className="cart-icon-container"
         >
             <ShoppingCartIcon 
                 htmlColor="#62492C"
-                sx={{ fontSize: 32 }}
+                className="cart-icon"
             />
             {(count ?? 0) > 0 && (
                 <div
                     style={{
                         position: 'absolute',
-                        top: -6,
-                        right: -6,
+                        top: -4,
+                        right: -4,
                         backgroundColor: '#d32f2f',
                         color: 'white',
                         borderRadius: '50%',
                         padding: '2px',
-                        minWidth: '16px',
-                        height: '16px',
+                        minWidth: '14px',
+                        height: '14px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: '0.7rem',
+                        fontSize: '0.6rem',
                         fontWeight: 'bold'
                     }}
+                    className="cart-badge"
                 >
                     {count}
                 </div>
@@ -283,4 +285,48 @@ function headerLinkStyle({
         alignItems: 'center',
         justifyContent: 'center'
     };
+}
+
+const styles = `
+    .cart-icon-container {
+        width: 24px;
+        height: 24px;
+    }
+
+    .cart-icon {
+        font-size: 24px;
+    }
+
+    .cart-badge {
+        top: -4px;
+        right: -4px;
+        min-width: 14px;
+        height: 14px;
+        font-size: 0.6rem;
+    }
+
+    @media (min-width: 768px) {
+        .cart-icon-container {
+            width: 32px;
+            height: 32px;
+        }
+
+        .cart-icon {
+            font-size: 32px;
+        }
+
+        .cart-badge {
+            top: -6px;
+            right: -6px;
+            min-width: 16px;
+            height: 16px;
+            font-size: 0.7rem;
+        }
+    }
+`;
+
+if (typeof document !== 'undefined') {
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = styles;
+    document.head.appendChild(styleSheet);
 }
