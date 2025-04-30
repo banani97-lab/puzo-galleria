@@ -31,7 +31,7 @@ export function ProductForm({
   };
 
   return (
-    <div className="product-form">
+    <div className="product-form" style={{ fontFamily: 'Bodoni' }}>
       {productOptions.map((option) => {
         // If there is only a single value in the option values, don't display the option
         if (option.optionValues.length === 1) return null;
@@ -118,9 +118,11 @@ export function ProductForm({
       })}
       <div style={{ 
         display: 'flex', 
-        gap: '10px',
-        width: '75%', // Reduce from 90% to 85%
-        marginRight: 'auto'
+        gap: '0.5rem',
+        width: '100%',
+        marginTop: '1.5rem',
+        justifyContent: 'space-between',
+        alignItems: 'center'
       }}>
         <div style={{ flex: 1 }}>
           <AddToCartButton

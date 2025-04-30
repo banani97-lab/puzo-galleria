@@ -96,14 +96,14 @@ export default function Product() {
     selectedOrFirstAvailableVariant: selectedVariant,
   });
 
-  const {title, descriptionHtml, images} = product;
+  const {title, description, images} = product;
 
   return (
-    <div className="product flex flex-col md:flex-row">
-      <div className="w-full md:w-2/3 px-4">
-        <div className="h-[400px] md:h-[600px] overflow-y-auto space-y-4">
+    <div className="product flex flex-col md:flex-row gap-8 px-4 md:px-8">
+      <div className="w-full md:w-1/2">
+        <div className="h-[600px] overflow-y-auto hidden md:block">
           {images.nodes.map((image: any) => (
-            <div key={image?.id} className="w-full">
+            <div key={image?.id} className="w-full mb-4">
               <Image 
                 src={image?.url} 
                 alt={image?.altText} 
@@ -114,23 +114,38 @@ export default function Product() {
             </div>
           ))}
         </div>
+        {/* Mobile horizontal slider */}
+        <div className="flex md:hidden overflow-x-auto space-x-4 pb-4" style={{ WebkitOverflowScrolling: 'touch' }}>
+          {images.nodes.map((image: any) => (
+            <div key={image?.id} className="min-w-[80vw] max-w-xs flex-shrink-0">
+              <Image 
+                src={image?.url} 
+                alt={image?.altText} 
+                width={image?.width}
+                height={image?.height}
+                className="w-full h-auto rounded"
+              />
+            </div>
+          ))}
+        </div>
       </div>
-      <div style={{ fontFamily: 'Bodoni'}} className="product-main justify-start px-4 md:pr-8 mt-8 md:mt-0">
-        <h1 className="text-2xl md:text-3xl">{title}</h1>
+      <div className="w-full md:w-1/2 product-main">
+        <h1 className="text-2xl md:text-3xl mb-4" style={{ fontFamily: "Bodoni" }}>{title}</h1>
+        <h3 className="text-lg mb-4" style={{ fontFamily: "Bodoni" }}>{description}</h3>
         <ProductPrice
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}
         />
-        <h5 style={{ fontFamily: 'Bodoni'}}>TAX INCLUDED</h5>
-        <br />
-        <ProductForm
-          productOptions={productOptions}
-          selectedVariant={selectedVariant}
-        />
-        <br />
-        <br />
-        <br />
-        <CartDrawer description={product.description} />
+        <h5 className="mt-2" style={{ fontFamily: "Bodoni" }}>TAX INCLUDED</h5>
+        <div className="mt-6">
+          <ProductForm
+            productOptions={productOptions}
+            selectedVariant={selectedVariant}
+          />
+        </div>
+        <div className="mt-8">
+          <CartDrawer description={product.description} />
+        </div>
       </div>
       <Analytics.ProductView
         data={{

@@ -31,7 +31,7 @@ export function Header({
             <div style={{ height: '30px', fontFamily: 'Bodoni', fontWeight: 300}} className='w-full bg-[#62492C] text-white text-center text-sm py-1'>
                 FREE SHIPPING EU
             </div>
-            <header className="header">
+            <header className="header relative">
                 <HeaderMenu
                     menu={menu}
                     viewport="desktop"
@@ -47,6 +47,13 @@ export function Header({
                         end>
                         <strong style={{ fontSize: '2rem'}}>{shop.name.split(" ")[0].toLocaleUpperCase()}</strong>
                     </NavLink>
+                </div>
+                <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
+                    <img 
+                        src="/assets/logo.png" 
+                        alt="PUZO Logo" 
+                        className="w-8 h-8"
+                    />
                 </div>
                 <HeaderCtas cart={cart} />
             </header>
@@ -148,22 +155,39 @@ function CartBadge({ count }: { count: number | null }) {
                     url: window.location.href || '',
                 } as CartViewPayload);
             }}
-            style={{ color: '#62492C' }}
+            style={{ 
+                position: 'relative',
+                display: 'block',
+                width: '32px',
+                height: '32px'
+            }}
         >
-            <Badge
-                badgeContent={count ?? 0} // Show count or 0 if null
-                color="error" // Red badge color (can be changed)
-                overlap="circular"
-                sx={{
-                    '& .MuiBadge-badge': {
-                        fontSize: '0.6rem', // Adjust badge font size
-                        minWidth: '20px', // Minimum width of badge
-                        height: '20px', // Height of badge
-                    }
-                }}
-            >
-                <ShoppingCartIcon style={{ fontSize: '40px' }} /> {/* Make the icon bigger */}
-            </Badge>
+            <ShoppingCartIcon 
+                htmlColor="#62492C"
+                sx={{ fontSize: 32 }}
+            />
+            {(count ?? 0) > 0 && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        top: -6,
+                        right: -6,
+                        backgroundColor: '#d32f2f',
+                        color: 'white',
+                        borderRadius: '50%',
+                        padding: '2px',
+                        minWidth: '16px',
+                        height: '16px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '0.7rem',
+                        fontWeight: 'bold'
+                    }}
+                >
+                    {count}
+                </div>
+            )}
         </a>
     );
 }

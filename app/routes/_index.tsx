@@ -75,7 +75,7 @@ export default function Homepage() {
                 <div className="w-full md:w-1/2 flex items-center">
                     <div className="w-full">
                         <Image
-                            src={data.products.nodes[0].images.nodes[8]?.url}
+                            src={data.products.nodes[0].images.nodes[13]?.url}
                             aspectRatio="3/4"
                             className="w-full h-auto object-contain"
                         />
@@ -100,12 +100,12 @@ export default function Homepage() {
                         {data.products.nodes[0].title}
                     </h2>
                     <p style={{ fontFamily: "Bodoni" }} className="mt-2 text-base md:text-lg text-black text-center">
-                        {data.products.nodes[0].title}
+                        {data.products.nodes[0].description}
                     </p>
                 </div>
             </div>
             <div className='w-full hidden md:grid grid-cols-6 gap-4 mt-8 mb-8'>
-                {[4, 6, 7, 5, 3, 2].map((index) => (
+                {[14, 10, 13, 15, 11, 12].map((index) => (
                     <div key={index} className='w-full'>
                         <Image 
                             src={data.products.nodes[0].images.nodes[index]?.url} 
@@ -135,10 +135,10 @@ export default function Homepage() {
                         {data.products.nodes[0].title}
                     </h2>
                     <p style={{ fontFamily: "Bodoni" }} className="mt-2 text-base md:text-lg text-black text-center">
-                        {data.products.nodes[0].title}
+                        {data.products.nodes[0].description}
                     </p>
                 </div>
-                <div className="w-full md:w-1/2 flex items-center order-1 md:order-2">
+                <div className="w-full md:w-1/2 flex items-center order-1 md:order-2 pr-0">
                     <div className="w-full">
                         <Image
                             src={data.products.nodes[0].images.nodes[9]?.url}
@@ -242,6 +242,7 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
 fragment RecommendedProduct on Product {
     id
     title
+    description
     handle
     priceRange {
         minVariantPrice {
@@ -249,7 +250,7 @@ fragment RecommendedProduct on Product {
             currencyCode
         }
     }
-    images(first: 10) {
+    images(first: 20) {
         nodes {
             id
             url
